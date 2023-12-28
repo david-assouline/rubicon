@@ -1,0 +1,56 @@
+{
+  "api": {},
+  "auth": {
+    "rubiconinsuretechefcc0204": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "RubiconCreateApplication": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_RubiconCreateApplication_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "RubiconCreateApplication"
+        }
+      ]
+    },
+    "AMPLIFY_function_RubiconCreateApplication_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "RubiconCreateApplication"
+        }
+      ]
+    }
+  }
+}

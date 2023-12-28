@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-rubiconinsuretech-dev-225919-authRole",
+      "UnauthRoleArn": "arn:aws:iam::788258985478:role/amplify-rubiconinsuretech-dev-225919-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::788258985478:role/amplify-rubiconinsuretech-dev-225919-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
+      "UnauthRoleName": "amplify-rubiconinsuretech-dev-225919-unauthRole",
+      "StackName": "amplify-rubiconinsuretech-dev-225919",
+      "StackId": "arn:aws:cloudformation:us-east-1:788258985478:stack/amplify-rubiconinsuretech-dev-225919/26ce0350-9eec-11ee-a089-0a3ebf59f70d",
+      "AmplifyAppId": "d2a1t9m20jf3vb"
+    },
+    "categories": {
+      "auth": {
+        "rubiconinsuretechefcc0204": {}
+      },
+      "function": {
+        "RubiconCreateApplication": {
+          "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
+          "s3Key": "amplify-builds/RubiconCreateApplication-33544c4b4d307a666561-build.zip"
+        }
+      }
+    }
+  }
+}
