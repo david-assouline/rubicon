@@ -5,8 +5,7 @@ from datetime import datetime
 from amplify.backend.function.RubiconCreateApplication.src.resources.db_connection import DatabaseConnection
 
 
-def insert_create_application(status, json_data):
-
+def insert_create_application(json_data, policy_guid):
     db_connection = DatabaseConnection()
     connection = db_connection.get_connection()
 
@@ -15,9 +14,10 @@ def insert_create_application(status, json_data):
             guid = uuid.uuid4()
             current_utc_datetime = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
-            sql = "INSERT INTO rubicon.POLICY (POLICYGUID, CREATIONDATETIME, STATUS, JSONDATA) VALUES (%s, %s, %s, %s)"
+            sql = "INSERT INTO rubicon.TRANSACTION (TRXGUID, TRXNAME, TRXDATETIME, STATUS, JSONDATA, POLICYGUID) " \
+                  "VALUES (%s, %s, %s, %s, %s, %s)"
 
-            data = (guid, current_utc_datetime, status, json_data)
+            data = (guid, "CreateApplication", current_utc_datetime, "pending", json_data, policy_guid)
 
             cursor.execute(sql, data)
 
@@ -27,4 +27,8 @@ def insert_create_application(status, json_data):
         connection.close()
 
 
-insert_create_application("22", '{"age": 30, "name": "John Doe", "skills": ["JavaScript", "React"]}')
+# 38d76f58-bcf9-457f-b210-bef7daf4bc1f
+
+insert_create_application(
+    '{"age": 30, "name": "John Doe", "skills": ["JavaScript", "React"]}',
+    '38d76f58-bcf9-457f-b210-bef7daf4bc1f')

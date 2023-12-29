@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "paths": {
+    "/api/transactions/createapplication": {
+      "name": "/api/transactions/createapplication",
+      "lambdaFunction": "RubiconCreateApplication",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/api/functions/getpolicy": {
+      "name": "/api/functions/getpolicy",
+      "lambdaFunction": "RubiconGetPolicy",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
