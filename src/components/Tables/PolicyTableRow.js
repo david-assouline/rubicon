@@ -9,10 +9,10 @@ import {
 } from "@chakra-ui/react";
 
 import React from "react";
-import { ArrowForwardIcon } from '@chakra-ui/icons'
+import { ArrowForwardIcon, RepeatClockIcon } from "@chakra-ui/icons";
 
 
-function TablesTableRow(props) {
+function PolicyTableRow(props) {
   const { transaction, date, detail, status } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
@@ -26,7 +26,7 @@ function TablesTableRow(props) {
             <Text
               fontSize="md"
               color={textColor}
-              fontWeight=""
+              fontWeight="bold"
               minWidth="100%"
             >
               {transaction}
@@ -43,7 +43,7 @@ function TablesTableRow(props) {
 
       <Td>
         <Flex direction="column">
-          <Text fontSize="md" color={textColor} fontWeight="bold">
+          <Text fontSize="md" color={textColor} fontWeight="">
             {detail}
           </Text>
         </Flex>
@@ -60,12 +60,37 @@ function TablesTableRow(props) {
         </Badge>
       </Td>
       <Td>
-        <Button p="0px" bg="transparent" variant="no-hover">
-          <ArrowForwardIcon w={8} h={8} color="green.400"/>
-        </Button>
+        {status === "Pending" && (
+          <Button
+            p="0px"
+            bg="transparent"
+            variant="no-hover"
+            onClick={() => {
+              // Action to perform on click
+              console.log('Button clicked');
+              // You can call any function or handle logic here
+            }}
+          >
+            <ArrowForwardIcon w={8} h={8} color="green.400"/>
+          </Button>
+        )}
+        {status === "Active" && (
+          <Button
+            p="0px"
+            bg="transparent"
+            variant="no-hover"
+            onClick={() => {
+              // Action to perform on click
+              console.log('Button clicked');
+              // You can call any function or handle logic here
+            }}
+          >
+            <RepeatClockIcon w={6} h={6} color="gray.400"/>
+          </Button>
+        )}
       </Td>
     </Tr>
   );
 }
 
-export default TablesTableRow;
+export default PolicyTableRow;

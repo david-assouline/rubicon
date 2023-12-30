@@ -35,7 +35,7 @@ function AdminPage() {
       <Policy
         title={"Policy Screen"}
         captions={["Transaction", "Date", "Detail", "Status", "Action"]}
-        data={policyTablesData}
+        data={policyData}
       />
       <Projects
         title={"Summary"}

@@ -1,7 +1,7 @@
-from resources.db_connection import DatabaseConnection
-
-db_connection = DatabaseConnection()
-connection = db_connection.get_connection()
+# from resources.db_connection import DatabaseConnection
+#
+# db_connection = DatabaseConnection()
+# connection = db_connection.get_connection()
 
 # Select
 # try:

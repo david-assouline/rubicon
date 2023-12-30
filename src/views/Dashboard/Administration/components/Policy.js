@@ -39,14 +39,15 @@ const Policy = ({ title, captions, data }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((row) => {
+            {data.map((record, index) => {
               return (
                 <PolicyTableRow
-                  key={`${row.email}-${row.name}`}
-                  transaction={row.transaction}
-                  date={row.date}
-                  detail={row.detail}
-                  status={row.status}
+                  key={index} // Unique key for each row
+                  transaction={record["TRXNAME"]}
+                  date={record["TRXDATETIME"]}
+                  detail={record["POLICYGUID"]}
+                  status={record["STATUS"]}
+                  action={record["STATUS"]}
                 />
               );
             })}

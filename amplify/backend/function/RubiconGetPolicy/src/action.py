@@ -1,24 +1,30 @@
+import pymysql
 import json
 
-from resources.db_connection import DatabaseConnection
+from resources.secrets import get_secret
+
+
+def get_db_connection():
+    # Assuming get_secret fetches your database credentials from AWS Secrets Manager
+    credentials = get_secret()
+    return pymysql.connect(
+        host=credentials['host'],
+        user=credentials['username'],
+        password=credentials['password'],
+        db='rubicon'
+    )
 
 
 def get_policy_transactions(policy_guid):
-    db_connection = DatabaseConnection()
-    connection = db_connection.get_connection()
-
+    connection = get_db_connection()
     try:
-        with connection.cursor() as cursor:
-            sql = "SELECT * FROM rubicon.TRANSACTION WHERE POLICYGUID = %s"
-
-            data = policy_guid
-
-            cursor.execute(sql, data)
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+            sql = "SELECT * FROM rubicon.TRANSACTION WHERE PolicyGUID = %s ORDER BY TRXDATETIME DESC"
+            cursor.execute(sql, (policy_guid,))
             result = cursor.fetchall()
-
-            # Convert the result to JSON
-            json_result = json.dumps(result)
-
+            return json.dumps(result)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return json.dumps({'error': str(e)})
     finally:
         connection.close()
-        return json_result
