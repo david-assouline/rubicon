@@ -1,12 +1,13 @@
 // Chakra imports
 import {
+  Progress,
   Table,
-  Tbody,
+  Tbody, Td,
   Text,
   Th,
   Thead,
   Tr,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
 // Custom components
 import Card from "components/Card/Card.js";
@@ -16,7 +17,7 @@ import TablesTableRow from "components/Tables/TablesTableRow";
 import React from "react";
 import PolicyTableRow from "../../../../components/Tables/PolicyTableRow";
 
-const Policy = ({ title, captions, data }) => {
+const Policy = ({ title, captions, data, isLoading }) => {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <Card my='22px' overflowX={{ sm: "scroll", xl: "hidden" }}>
@@ -39,8 +40,14 @@ const Policy = ({ title, captions, data }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((record, index) => {
-              return (
+            {isLoading ? (
+              <Tr>
+                <Td colSpan={captions.length}>
+                  <Progress size="md" colorScheme="teal" isIndeterminate />
+                </Td>
+              </Tr>
+            ) : (
+              data.map((record, index) => (
                 <PolicyTableRow
                   key={index} // Unique key for each row
                   transaction={record["TRXNAME"]}
@@ -49,8 +56,8 @@ const Policy = ({ title, captions, data }) => {
                   status={record["STATUS"]}
                   action={record["STATUS"]}
                 />
-              );
-            })}
+              ))
+            )}
           </Tbody>
         </Table>
       </CardBody>

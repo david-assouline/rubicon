@@ -9,21 +9,23 @@ import PolicyFilter from "./components/PolicyFilter";
 
 function AdminPage() {
   const [policyData, setPolicyData] = useState([]); // State to store fetched data
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
 
   useEffect(() => {
-    // Function to fetch data
     const fetchData = async () => {
       try {
-        const response = await fetch('https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getpolicy'); // Replace with your API endpoint
+        setIsLoading(true); // Start loading
+        const response = await fetch('https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getpolicy');
         const data = await response.json();
         setPolicyData(data); // Update state with fetched data
-        console.log(data);
       } catch (error) {
         console.error('Error fetching data: ', error);
+      } finally {
+        setIsLoading(false); // Stop loading
       }
     };
 
-    fetchData(); // Call the function to fetch data
+    fetchData();
   }, []);
 
   return (
@@ -36,6 +38,7 @@ function AdminPage() {
         title={"Policy Screen"}
         captions={["Transaction", "Date", "Detail", "Status", "Action"]}
         data={policyData}
+        isLoading={isLoading}
       />
       <Projects
         title={"Summary"}

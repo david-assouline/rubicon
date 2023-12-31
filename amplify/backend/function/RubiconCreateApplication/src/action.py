@@ -2,13 +2,23 @@ import json
 import uuid
 from datetime import datetime
 
-from amplify.backend.function.RubiconCreateApplication.src.resources.db_connection import DatabaseConnection
+import pymysql
+
+from resources.secrets import get_secret
+
+
+def get_db_connection():
+    credentials = get_secret()
+    return pymysql.connect(
+        host=credentials['host'],
+        user=credentials['username'],
+        password=credentials['password'],
+        db='rubicon'
+    )
 
 
 def insert_create_application(json_data, policy_guid):
-    db_connection = DatabaseConnection()
-    connection = db_connection.get_connection()
-
+    connection = get_db_connection()
     try:
         with connection.cursor() as cursor:
             guid = uuid.uuid4()
@@ -27,8 +37,13 @@ def insert_create_application(json_data, policy_guid):
         connection.close()
 
 
-# 38d76f58-bcf9-457f-b210-bef7daf4bc1f
+def process_create_application(trx_guid):
+    connection = get_db_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "UPDATE rubicon.TRANSACTION SET STATUS = 'Active' WHERE TRXGUID = %s"
+            cursor.execute(sql, (trx_guid,))
+            connection.commit()
 
-insert_create_application(
-    '{"age": 30, "name": "John Doe", "skills": ["JavaScript", "React"]}',
-    '38d76f58-bcf9-457f-b210-bef7daf4bc1f')
+    finally:
+        connection.close()

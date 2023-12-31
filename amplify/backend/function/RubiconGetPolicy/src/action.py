@@ -5,7 +5,6 @@ from resources.secrets import get_secret
 
 
 def get_db_connection():
-    # Assuming get_secret fetches your database credentials from AWS Secrets Manager
     credentials = get_secret()
     return pymysql.connect(
         host=credentials['host'],
