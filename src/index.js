@@ -11,21 +11,13 @@ import AdminLayout from "layouts/Admin.js";
 
 export default function App() {
   return (
-    <Authenticator>
-      {({ signOut, user }) => (
-        <main>
-          <h1>Hello {user.username}</h1>
-          <button onClick={signOut}>Sign out</button>
-        </main>
-      )}
-      <HashRouter>
-        <Switch>
-          <Route path={`/auth`} component={AuthLayout} />
-          <Route path={`/admin`} component={AdminLayout} />
-          <Redirect from={`/`} to="/admin/dashboard" />
-        </Switch>
-      </HashRouter>
-    </Authenticator>
+    <HashRouter>
+      <Switch>
+        <Route path={`/auth`} component={AuthLayout} />
+        <Route path={`/admin`} component={AdminLayout} />
+        <Redirect from={`/`} to="/admin/dashboard" />
+      </Switch>
+    </HashRouter>
    );
 }
 

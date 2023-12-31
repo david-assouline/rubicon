@@ -9,7 +9,6 @@ def get_secret():
     secret_name = "rubicon/db/mysql"
     region_name = "us-east-1"
 
-    # Create a Secrets Manager client
     session = boto3.session.Session()
     client = session.client(
         service_name='secretsmanager',

@@ -28,7 +28,7 @@ function Profile() {
         backgroundProfile={bgProfile}
         avatarImage={avatar4}
         name={"David Assouline"}
-        email={user.signInDetails.loginId}
+        email={"david.assouline@hotmail.com"}
         tabs={[
           {
             name: "OVERVIEW",
