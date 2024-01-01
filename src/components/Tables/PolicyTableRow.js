@@ -13,10 +13,21 @@ import { ArrowForwardIcon, RepeatClockIcon } from "@chakra-ui/icons";
 
 
 function PolicyTableRow(props) {
-  const { transaction, date, detail, status } = props;
+  const { transactionName, date, trxGUID, status, setIsLoading, onActionComplete } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
+
+  const createApplicationLambda = async (action, trxGUID) => {
+    try {
+      const response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/transactions/createapplication?action=${action}&trxGUID=${trxGUID}`);
+      const data = await response.json();
+      console.log(data);
+
+    } catch (error) {
+      console.error('Error calling Lambda function:', error);
+    }
+  };
 
   return (
     <Tr>
@@ -29,7 +40,7 @@ function PolicyTableRow(props) {
               fontWeight="bold"
               minWidth="100%"
             >
-              {transaction}
+              {transactionName}
             </Text>
           </Flex>
         </Flex>
@@ -44,7 +55,7 @@ function PolicyTableRow(props) {
       <Td>
         <Flex direction="column">
           <Text fontSize="md" color={textColor} fontWeight="">
-            {detail}
+            {trxGUID}
           </Text>
         </Flex>
       </Td>
@@ -66,9 +77,12 @@ function PolicyTableRow(props) {
             bg="transparent"
             variant="no-hover"
             onClick={() => {
-              // Action to perform on click
-              console.log('Button clicked');
-              // You can call any function or handle logic here
+              setIsLoading(true);
+              createApplicationLambda("process", trxGUID).then(() => {
+                if (props.onActionComplete) {
+                  props.onActionComplete();
+                }
+              });
             }}
           >
             <ArrowForwardIcon w={8} h={8} color="green.400"/>

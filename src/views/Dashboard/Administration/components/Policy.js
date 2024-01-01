@@ -17,7 +17,7 @@ import TablesTableRow from "components/Tables/TablesTableRow";
 import React from "react";
 import PolicyTableRow from "../../../../components/Tables/PolicyTableRow";
 
-const Policy = ({ title, captions, data, isLoading }) => {
+const Policy = ({ title, captions, data, isLoading, setIsLoading, onActionComplete }) => {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <Card my='22px' overflowX={{ sm: "scroll", xl: "hidden" }}>
@@ -50,11 +50,13 @@ const Policy = ({ title, captions, data, isLoading }) => {
               data.map((record, index) => (
                 <PolicyTableRow
                   key={index} // Unique key for each row
-                  transaction={record["TRXNAME"]}
+                  transactionName={record["TRXNAME"]}
                   date={record["TRXDATETIME"]}
-                  detail={record["POLICYGUID"]}
+                  trxGUID={record["TRXGUID"]}
                   status={record["STATUS"]}
                   action={record["STATUS"]}
+                  setIsLoading={setIsLoading}
+                  onActionComplete={onActionComplete}
                 />
               ))
             )}
