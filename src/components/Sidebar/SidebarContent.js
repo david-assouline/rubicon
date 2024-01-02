@@ -111,7 +111,7 @@ const SidebarContent = ({ logoText, routes }) => {
                   <Icon>{prop.icon}</Icon>
                 ) : (
                   <IconBox
-                    bg="teal.300"
+                    bg="blue.500"
                     color="white"
                     h="30px"
                     w="30px"
@@ -162,7 +162,7 @@ const SidebarContent = ({ logoText, routes }) => {
                 ) : (
                   <IconBox
                     bg={inactiveBg}
-                    color="teal.300"
+                    color="blue.500"
                     h="30px"
                     w="30px"
                     me="12px"
@@ -212,7 +212,7 @@ const SidebarContent = ({ logoText, routes }) => {
       <Button
         onClick={handleSignOut}
         variant="solid"
-        colorScheme="teal"
+        colorScheme="blue"
         borderRadius="15px"
         mx="auto"
         my="20px"

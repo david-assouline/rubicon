@@ -43,7 +43,7 @@ const Policy = ({ title, captions, data, isLoading, setIsLoading, onActionComple
             {isLoading ? (
               <Tr>
                 <Td colSpan={captions.length}>
-                  <Progress size="md" colorScheme="teal" isIndeterminate />
+                  <Progress size="md" colorScheme="blue" isIndeterminate />
                 </Td>
               </Tr>
             ) : (

@@ -34,7 +34,7 @@ const PolicyFilter = ({ title, captions, data }) => {
             <InputLeftAddon children="To Date" />
             <Input type="date" />
           </InputGroup>
-          <Button w="48" colorScheme="teal" size="md">
+          <Button w="48" colorScheme="blue" size="md">
             Refresh
           </Button>
         </Stack>
