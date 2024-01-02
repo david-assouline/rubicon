@@ -19,7 +19,7 @@
         },
         "RubiconGetPolicy": {
           "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
-          "s3Key": "amplify-builds/RubiconGetPolicy-6b384246475566523249-build.zip"
+          "s3Key": "amplify-builds/RubiconGetPolicy-6c426666306e6b473775-build.zip"
         }
       },
       "api": {

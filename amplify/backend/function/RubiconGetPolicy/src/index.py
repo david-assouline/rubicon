@@ -7,7 +7,9 @@ def handler(event, context):
     print('received event:')
     print(event)
 
-    result = get_policy_transactions("38d76f58-bcf9-457f-b210-bef7daf4bc1f")
+    params = event['queryStringParameters']
+
+    result = get_policy_transactions(params["policyGUID"])
     print(result)
 
     return {

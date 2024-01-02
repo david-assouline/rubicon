@@ -18,7 +18,7 @@ def get_policy_transactions(policy_guid):
     connection = get_db_connection()
     try:
         with connection.cursor(pymysql.cursors.DictCursor) as cursor:
-            sql = "SELECT * FROM rubicon.TRANSACTION WHERE PolicyGUID = %s ORDER BY TRXDATETIME DESC"
+            sql = "SELECT * FROM rubicon.TRANSACTION WHERE POLICYGUID= %s ORDER BY TRXDATETIME DESC"
             cursor.execute(sql, (policy_guid,))
             result = cursor.fetchall()
             return json.dumps(result)

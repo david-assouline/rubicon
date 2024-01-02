@@ -25,12 +25,14 @@ import { ProfileIcon, SettingsIcon } from "components/Icons/Icons";
 import { ItemContent } from "components/Menu/ItemContent";
 import SidebarResponsive from "components/Sidebar/SidebarResponsive";
 import PropTypes from "prop-types";
-import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import routes from "routes.js";
+import React, { useEffect, useState } from "react";
 
 export default function HeaderLinks(props) {
   const { variant, children, fixed, secondary, onOpen, ...rest } = props;
+  const [policyGUID, setPolicyGUID] = useState('');
+  const history = useHistory();
 
   // Chakra Color Mode
   let mainTeal = useColorModeValue("teal.300", "teal.300");
@@ -43,7 +45,15 @@ export default function HeaderLinks(props) {
     navbarIcon = "white";
     mainText = "white";
   }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && policyGUID) {
+      history.push('/admin/administration', { state: { policyGUID } });
+    }
+  };
+
   const settingsRef = React.useRef();
+
   return (
     <Flex
       pe={{ sm: "0px", md: "16px" }}
@@ -90,8 +100,11 @@ export default function HeaderLinks(props) {
           fontStyle={"italic"}
           py="11px"
           color={mainText}
-          placeholder="Policy Number"
+          placeholder="Policy GUID"
           borderRadius="inherit"
+          value={policyGUID}
+          onChange={(e) => setPolicyGUID(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </InputGroup>
       <NavLink to="/auth/signin">
