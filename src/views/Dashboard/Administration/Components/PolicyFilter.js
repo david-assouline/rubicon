@@ -13,7 +13,7 @@ import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import TablesTableRow from "components/Tables/TablesTableRow";
 import React from "react";
-import PolicyTableRow from "../../../../components/Tables/PolicyTableRow";
+import PolicyTableRow from "./PolicyTableRow";
 
 const PolicyFilter = ({ title, captions, data }) => {
   const textColor = useColorModeValue("gray.700", "white");

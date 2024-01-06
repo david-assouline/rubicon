@@ -100,7 +100,7 @@ export default function HeaderLinks(props) {
           fontStyle={"italic"}
           py="11px"
           color={mainText}
-          placeholder="Policy GUID"
+          placeholder="PolicyTable GUID"
           borderRadius="inherit"
           value={policyGUID}
           onChange={(e) => setPolicyGUID(e.target.value)}

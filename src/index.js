@@ -8,7 +8,7 @@ Amplify.configure(config);
 
 import AuthLayout from "layouts/Auth.js";
 import AdminLayout from "layouts/Admin.js";
-import AdminPage from "./views/Dashboard/Administration";
+import Administration from "./views/Dashboard/Administration";
 
 export default function App() {
   return (
@@ -16,7 +16,7 @@ export default function App() {
       <Switch>
         <Route path={`/auth`} component={AuthLayout} />
         <Route path={`/admin`} component={AdminLayout} />
-        <Route path={`/admin/administration`} component={AdminPage} />
+        <Route path={`/admin/administration`} component={Administration} />
         <Redirect from={`/`} to="/admin/dashboard" />
       </Switch>
     </BrowserRouter>

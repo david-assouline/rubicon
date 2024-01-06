@@ -47,3 +47,15 @@ def process_create_application(trx_guid):
 
     finally:
         connection.close()
+
+
+def undo_create_application(trx_guid):
+    connection = get_db_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "UPDATE rubicon.TRANSACTION SET STATUS = 'Pending' WHERE TRXGUID = %s"
+            cursor.execute(sql, (trx_guid,))
+            connection.commit()
+
+    finally:
+        connection.close()

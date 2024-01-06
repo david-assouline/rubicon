@@ -13,7 +13,7 @@ import {
   RocketIcon,
   SupportIcon,
 } from "components/Icons/Icons";
-import AdminPage from "./views/Dashboard/Administration";
+import Administration from "./views/Dashboard/Administration";
 
 var dashRoutes = [
   {
@@ -41,21 +41,21 @@ var dashRoutes = [
     path: "/administration",
     name: "Administration",
     icon: <CreditIcon color="inherit" />,
-    component: AdminPage,
+    component: Administration,
     layout: "/admin",
   },
   {
     path: "/commissions",
     name: "Commissions",
     icon: <CreditIcon color="inherit" />,
-    component: AdminPage,
+    component: Administration,
     layout: "/admin",
   },
   {
     path: "/claims",
     name: "Claims",
     icon: <CreditIcon color="inherit" />,
-    component: AdminPage,
+    component: Administration,
     layout: "/admin",
   },
   {

@@ -94,9 +94,12 @@ function PolicyTableRow(props) {
             bg="transparent"
             variant="no-hover"
             onClick={() => {
-              // Action to perform on click
-              console.log('Button clicked');
-              // You can call any function or handle logic here
+              setIsLoading(true);
+              createApplicationLambda("undo", trxGUID).then(() => {
+                if (props.onActionComplete) {
+                  props.onActionComplete();
+                }
+              });
             }}
           >
             <RepeatClockIcon w={6} h={6} color="gray.400"/>

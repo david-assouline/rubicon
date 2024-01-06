@@ -10,9 +10,6 @@ import Header from "./components/Header";
 import PlatformSettings from "./components/PlatformSettings";
 import ProfileInformation from "./components/ProfileInformation";
 import Projects from "./components/Projects";
-import { currentAuthenticatedUser } from "../../../toolkit/authentication";
-
-const user = await currentAuthenticatedUser();
 function Profile() {
   // Chakra color mode
   const textColor = useColorModeValue("gray.700", "white");

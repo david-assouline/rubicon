@@ -15,12 +15,12 @@ import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import TablesTableRow from "components/Tables/TablesTableRow";
 import React from "react";
-import PolicyTableRow from "../../../../components/Tables/PolicyTableRow";
+import PolicyTableRow from "./PolicyTableRow";
 
-const Policy = ({ title, captions, data, isLoading, setIsLoading, onActionComplete }) => {
+const PolicyTable = ({ title, captions, data, isLoading, setIsLoading, onActionComplete }) => {
   const textColor = useColorModeValue("gray.700", "white");
   return (
-    <Card my='22px' overflowX={{ sm: "scroll", xl: "hidden" }}>
+    <Card my='10px' overflowX={{ sm: "scroll", xl: "hidden" }}>
       <CardHeader p='6px 0px 22px 0px'>
         <Text fontSize='xl' color={textColor} fontWeight='bold'>
           {title}
@@ -67,4 +67,4 @@ const Policy = ({ title, captions, data, isLoading, setIsLoading, onActionComple
   );
 };
 
-export default Policy;
+export default PolicyTable;

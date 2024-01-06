@@ -16,7 +16,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import TablesProjectRow from "components/Tables/TablesProjectRow";
 import React from "react";
 
-const Projects = ({ title, captions, data }) => {
+const SampleProjects = ({ title, captions, data }) => {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <Card my='22px' overflowX={{ sm: "scroll", xl: "hidden" }}>
@@ -60,4 +60,4 @@ const Projects = ({ title, captions, data }) => {
   );
 };
 
-export default Projects;
+export default SampleProjects;

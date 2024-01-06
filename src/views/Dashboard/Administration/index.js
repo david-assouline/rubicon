@@ -1,12 +1,13 @@
 // Chakra imports
 import { Flex } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import Policy from "./components/Policy";
-import Projects from "./components/Projects";
+import PolicyTable from "./Components/PolicyTable";
+import SampleProjects from "./Components/(sample)Projects";
 import { dashboardTableData } from "variables/general";
-import PolicyFilter from "./components/PolicyFilter";
+import PolicyFilter from "./Components/PolicyFilter";
+import PolicyButtons from "./Components/PolicyButtons";
 
-function AdminPage(props) {
+function Administration(props) {
   const [policyData, setPolicyData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { policyGUID = '38d76f58-bcf9-457f-b210-bef7daf4bc1f' } = props.location.state || {};
@@ -35,15 +36,19 @@ function AdminPage(props) {
         title={"Filters"}
         captions={["Transaction", "Date", "Detail", "Status", "Action"]}
         />
-      <Policy
-        title={"Policy Screen"}
+      <PolicyButtons
+        title={"Filters"}
+        captions={["Transaction", "Date", "Detail", "Status", "Action"]}
+      />
+      <PolicyTable
+        title={"Policy"}
         captions={["Transaction", "Date", "GUID", "Status", "Action"]}
         data={policyData}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
         onActionComplete={fetchData}
       />
-      <Projects
+      <SampleProjects
         title={"Summary"}
         captions={["Companies", "Budget", "Status", "Completion", ""]}
         data={dashboardTableData}
@@ -52,4 +57,4 @@ function AdminPage(props) {
   );
 }
 
-export default AdminPage;
+export default Administration;
