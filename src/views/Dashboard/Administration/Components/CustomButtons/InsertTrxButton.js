@@ -5,26 +5,61 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton, Button, useDisclosure, Box, FormLabel, Input, Select, Textarea, Stack, InputGroup, InputLeftAddon
+  ModalCloseButton,
+  Button,
+  useDisclosure,
+  Box,
+  Input,
+  Select,
+  Stack,
+  InputGroup,
+  InputLeftAddon
 } from "@chakra-ui/react";
+
 import { AddIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import { TransactionNames } from "../../../../../toolkit/TransactionNames";
 import { v4 as uuidv4 } from 'uuid';
-export function InsertTrxButton() {
+export function InsertTrxButton(props) {
+  const { setIsLoading, onActionComplete } = props;
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [trxGUID, setTrxGUID] = useState('');
-  const [trxName, setTrxName] = useState('TestTransaction');
+  const [trxName, setTrxName] = useState('Test Transaction 1');
   const [trxDate, setTrxDate] = useState(new Date().toISOString().split('T')[0]);
   const [trxStatus, setTrxStatus] = useState('Pending');
   const [trxJsonData, setTrxJsonData] = useState('');
   const [policyGUID, setPolicyGUID] = useState('');
 
   const handleSubmit = () => {
-    console.log({ trxGUID, trxName, trxDate, trxStatus, trxJsonData, policyGUID});
-
     onClose();
+    props.setIsLoading(true);
+
+    const data = {
+      trxGUID: trxGUID,
+      policyGUID: policyGUID,
+      trxName: trxName,
+      trxDate: trxDate,
+      trxStatus: trxStatus,
+      trxJsonData: trxJsonData,
+    };
+
+    fetch('https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/transactions/createapplication?action=insert', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (props.onActionComplete) {
+          props.onActionComplete();
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      })
   };
 
   useEffect(() => {

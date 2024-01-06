@@ -15,7 +15,7 @@
       "function": {
         "RubiconCreateApplication": {
           "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
-          "s3Key": "amplify-builds/RubiconCreateApplication-665a7272636948324358-build.zip"
+          "s3Key": "amplify-builds/RubiconCreateApplication-70342f4449417a4e7252-build.zip"
         },
         "RubiconGetPolicy": {
           "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",

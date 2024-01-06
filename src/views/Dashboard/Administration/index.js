@@ -39,6 +39,9 @@ function Administration(props) {
       <PolicyButtons
         title={"Filters"}
         captions={["Transaction", "Date", "Detail", "Status", "Action"]}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        onActionComplete={fetchData}
       />
       <PolicyTable
         title={"Policy"}

@@ -1,6 +1,4 @@
 import json
-import uuid
-from datetime import datetime
 
 import pymysql
 
@@ -17,19 +15,24 @@ def get_db_connection():
     )
 
 
-def insert_create_application(json_data, policy_guid):
+def insert_create_application(data):
     connection = get_db_connection()
     try:
         with connection.cursor() as cursor:
-            guid = uuid.uuid4()
-            current_utc_datetime = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
             sql = "INSERT INTO rubicon.TRANSACTION (TRXGUID, TRXNAME, TRXDATETIME, STATUS, JSONDATA, POLICYGUID) " \
                   "VALUES (%s, %s, %s, %s, %s, %s)"
 
-            data = (guid, "CreateApplication", current_utc_datetime, "pending", json_data, policy_guid)
+            values = (
+                data.get('trxGUID', ''),
+                data.get('trxName', ''),
+                data.get('trxDate', ''),
+                data.get('trxStatus', ''),
+                json.dumps({"name": "json", "notes": "this is a sample json"}),
+                data.get('policyGUID', ''),
+            )
 
-            cursor.execute(sql, data)
+            cursor.execute(sql, values)
 
             connection.commit()
 

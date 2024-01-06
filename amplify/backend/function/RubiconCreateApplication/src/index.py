@@ -1,6 +1,6 @@
 import json
 
-from action import process_create_application, undo_create_application
+from action import process_create_application, undo_create_application, insert_create_application
 
 
 def handler(event, context):
@@ -19,7 +19,7 @@ def handler(event, context):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
             },
-            'body': json.dumps('Transaction Processed!')
+            'body': json.dumps('lambda success')
         }
 
     if params["action"] == "undo":
@@ -32,7 +32,20 @@ def handler(event, context):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
             },
-            'body': json.dumps('Transaction Processed!')
+            'body': json.dumps('lambda success')
+        }
+
+    if params["action"] == "insert":
+        insert_create_application(json.loads(event['body']))
+
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Headers': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+            },
+            'body': json.dumps('lambda success')
         }
 
     else:
@@ -43,5 +56,5 @@ def handler(event, context):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
             },
-            'body': json.dumps('Hello from your new Amplify Python lambda!')
+            'body': json.dumps('hit else statement on lambda')
     }
