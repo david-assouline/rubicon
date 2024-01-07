@@ -8,8 +8,9 @@ import {
 import React from "react";
 import { InsertTrxButton } from "./CustomButtons/InsertTrxButton";
 import { ViewsButton } from "./CustomButtons/ViewsButton";
+import { PolicySearchField } from "./CustomButtons/PolicySearchField";
 
-const PolicyButtons = ({ title, captions, data, isLoading, setIsLoading, onActionComplete }) => {
+const PolicyButtons = ({ title, captions, policyGUID, isLoading, setIsLoading, onActionComplete }) => {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <Box mt={4} mb={3}>
@@ -18,6 +19,7 @@ const PolicyButtons = ({ title, captions, data, isLoading, setIsLoading, onActio
         <InsertTrxButton
           setIsLoading={setIsLoading}
           onActionComplete={onActionComplete}
+          policyGUID={policyGUID}
         />
       </Stack>
     </Box>

@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 import { TransactionNames } from "../../../../../toolkit/TransactionNames";
 import { v4 as uuidv4 } from 'uuid';
 export function InsertTrxButton(props) {
-  const { setIsLoading, onActionComplete } = props;
+  const { policyGUID, setIsLoading, onActionComplete } = props;
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [trxGUID, setTrxGUID] = useState('');
@@ -29,7 +29,6 @@ export function InsertTrxButton(props) {
   const [trxDate, setTrxDate] = useState(new Date().toISOString().split('T')[0]);
   const [trxStatus, setTrxStatus] = useState('Pending');
   const [trxJsonData, setTrxJsonData] = useState('');
-  const [policyGUID, setPolicyGUID] = useState('');
 
   const handleSubmit = () => {
     onClose();
@@ -77,7 +76,6 @@ export function InsertTrxButton(props) {
         Insert Transaction
       </Button>
 
-
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -88,22 +86,11 @@ export function InsertTrxButton(props) {
 
               <Box>
                 <InputGroup>
-                  <InputLeftAddon children="GUID" fontWeight="bold"/>
-                  <Input
-                    id="trxGUID"
-                    value={trxGUID}
-                    isDisabled
-                  />
-                </InputGroup>
-              </Box>
-
-              <Box>
-                <InputGroup>
                   <InputLeftAddon children="Policy" fontWeight="bold"/>
                   <Input
                     id="policyGUID"
                     value={policyGUID}
-                    onChange={(e) => setPolicyGUID(e.target.value)}
+                    isDisabled
                   />
                 </InputGroup>
               </Box>
@@ -132,6 +119,17 @@ export function InsertTrxButton(props) {
                       value={trxDate}
                       onChange={(e) => setTrxDate(e.target.value)}
                     />
+                </InputGroup>
+              </Box>
+
+              <Box>
+                <InputGroup>
+                  <InputLeftAddon children="GUID" fontWeight="bold"/>
+                  <Input
+                    id="trxGUID"
+                    value={"Auto-Generated"}
+                    isDisabled
+                  />
                 </InputGroup>
               </Box>
 

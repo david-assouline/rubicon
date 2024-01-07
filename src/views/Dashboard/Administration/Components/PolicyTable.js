@@ -1,5 +1,6 @@
 // Chakra imports
 import {
+  Alert, AlertDescription, AlertIcon, AlertTitle,
   Progress,
   Table,
   Tbody, Td,
@@ -17,7 +18,7 @@ import TablesTableRow from "components/Tables/TablesTableRow";
 import React from "react";
 import PolicyTableRow from "./PolicyTableRow";
 
-const PolicyTable = ({ title, captions, data, isLoading, setIsLoading, onActionComplete }) => {
+const PolicyTable = ({ title, captions, data, policyGUID, isLoading, setIsLoading, onActionComplete }) => {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <Card my='10px' overflowX={{ sm: "scroll", xl: "hidden" }}>
@@ -46,7 +47,7 @@ const PolicyTable = ({ title, captions, data, isLoading, setIsLoading, onActionC
                   <Progress size="md" colorScheme="blue" isIndeterminate />
                 </Td>
               </Tr>
-            ) : (
+            ) : data && data.length > 0 ? (
               data.map((record, index) => (
                 <PolicyTableRow
                   key={index} // Unique key for each row
@@ -59,6 +60,17 @@ const PolicyTable = ({ title, captions, data, isLoading, setIsLoading, onActionC
                   onActionComplete={onActionComplete}
                 />
               ))
+            ) : policyGUID ? (
+              <Tr>
+                <Td colSpan={captions.length}>
+                  <Alert status="error">
+                    <AlertIcon />
+                    <AlertDescription>No Policy found for {policyGUID}</AlertDescription>
+                  </Alert>
+                </Td>
+              </Tr>
+            ) : (
+              <Tr></Tr>
             )}
           </Tbody>
         </Table>

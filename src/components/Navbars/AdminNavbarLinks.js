@@ -27,12 +27,12 @@ import SidebarResponsive from "components/Sidebar/SidebarResponsive";
 import PropTypes from "prop-types";
 import { NavLink, useHistory } from "react-router-dom";
 import routes from "routes.js";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-export default function HeaderLinks(props) {
+export default function HeaderLinks({ policyGUID, setPolicyGUID, ...props}) {
   const { variant, children, fixed, secondary, onOpen, ...rest } = props;
-  const [policyGUID, setPolicyGUID] = useState('');
-  const history = useHistory();
+  const [localPolicyGUID, setLocalPolicyGUID] = useState('')
+  let history = useHistory();
 
   // Chakra Color Mode
   let mainBlue = useColorModeValue("blue.500", "blue.500");
@@ -47,8 +47,11 @@ export default function HeaderLinks(props) {
   }
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && policyGUID) {
-      history.push('/admin/administration', { state: { policyGUID } });
+    if (event.key === 'Enter' && localPolicyGUID) {
+      setPolicyGUID(localPolicyGUID);
+      setLocalPolicyGUID('');
+      event.target.blur();
+      history.push('/admin/administration');
     }
   };
 
@@ -100,10 +103,10 @@ export default function HeaderLinks(props) {
           fontStyle={"italic"}
           py="11px"
           color={mainText}
-          placeholder="PolicyTable GUID"
+          placeholder="Search"
           borderRadius="inherit"
-          value={policyGUID}
-          onChange={(e) => setPolicyGUID(e.target.value)}
+          value={localPolicyGUID}
+          onChange={(e) => setLocalPolicyGUID(e.target.value)}
           onKeyDown={handleKeyDown}
         />
       </InputGroup>

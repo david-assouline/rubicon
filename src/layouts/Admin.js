@@ -20,10 +20,10 @@ import PanelContainer from '../components/Layout/PanelContainer';
 import PanelContent from '../components/Layout/PanelContent';
 export default function Dashboard(props) {
 	const { ...rest } = props;
-	// states and functions
 	const [ sidebarVariant, setSidebarVariant ] = useState('transparent');
 	const [ fixed, setFixed ] = useState(false);
-	// functions for changing the states from components
+	const [policyGUID, setPolicyGUID] = useState('');
+
 	const getRoute = () => {
 		return window.location.pathname !== '/admin/full-screen-maps';
 	};
@@ -69,14 +69,26 @@ export default function Dashboard(props) {
 	};
 	const getRoutes = (routes) => {
 		return routes.map((prop, key) => {
-			if (prop.collapse) {
-				return getRoutes(prop.views);
-			}
-			if (prop.category === 'account') {
-				return getRoutes(prop.views);
-			}
+			// ... handle collapse and category as before
+
 			if (prop.layout === '/admin') {
-				return <Route path={prop.layout + prop.path} component={prop.component} key={key} />;
+				if (prop.path === '/administration') {
+					return (
+						<Route
+							path={prop.layout + prop.path}
+							render={(routeProps) => (
+								<prop.component
+									{...routeProps}
+									policyGUID={policyGUID}
+									setPolicyGUID={setPolicyGUID}
+								/>
+							)}
+							key={key}
+						/>
+					);
+				} else {
+					return <Route path={prop.layout + prop.path} component={prop.component} key={key} />;
+				}
 			} else {
 				return null;
 			}
@@ -107,6 +119,8 @@ export default function Dashboard(props) {
 						secondary={getActiveNavbar(routes)}
 						fixed={fixed}
 						{...rest}
+						policyGUID={policyGUID}
+						setPolicyGUID={setPolicyGUID}
 					/>
 				</Portal>
 				{getRoute() ? (

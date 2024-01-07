@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import AdminNavbarLinks from "./AdminNavbarLinks";
 
-export default function AdminNavbar(props) {
+export default function AdminNavbar({ policyGUID, setPolicyGUID, ...props }) {
   const [scrolled, setScrolled] = useState(false);
   const {
     variant,
@@ -152,6 +152,8 @@ export default function AdminNavbar(props) {
             logoText={props.logoText}
             secondary={props.secondary}
             fixed={props.fixed}
+            policyGUID={policyGUID}
+            setPolicyGUID={setPolicyGUID}
           />
         </Box>
       </Flex>

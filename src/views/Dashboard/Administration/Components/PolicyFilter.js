@@ -3,7 +3,6 @@ import {
   Input,
   Stack,
   Text,
-  IconButton,
   Button,
   useColorModeValue, InputGroup, InputLeftAddon
 } from "@chakra-ui/react";
@@ -11,11 +10,25 @@ import {
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
-import TablesTableRow from "components/Tables/TablesTableRow";
 import React from "react";
-import PolicyTableRow from "./PolicyTableRow";
 
-const PolicyFilter = ({ title, captions, data }) => {
+
+const PolicyFilter = ({ title, setPolicyData, isLoading, policyGUID, setIsLoading, onActionComplete }) => {
+
+  const handleRefresh = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getpolicy?type=daterange&policyGUID=${policyGUID}`);
+      const data = await response.json();
+      setPolicyData(data);
+
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <Card overflowX={{ sm: "scroll", xl: "hidden" }}>
@@ -34,7 +47,12 @@ const PolicyFilter = ({ title, captions, data }) => {
             <InputLeftAddon children="To Date" />
             <Input type="date" />
           </InputGroup>
-          <Button w="48" colorScheme="blue" size="md">
+          <Button
+            w="48"
+            colorScheme="blue"
+            size="md"
+            onClick={handleRefresh}
+          >
             Refresh
           </Button>
         </Stack>
