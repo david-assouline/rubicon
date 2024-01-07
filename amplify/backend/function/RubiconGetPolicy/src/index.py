@@ -23,7 +23,7 @@ def handler(event, context):
         }
 
     elif params["type"] == "daterange":
-        result = get_policy_transactions_between_dates(params["trxGUID"], params["startDate"], params["endDate"])
+        result = get_policy_transactions_between_dates(params["policyGUID"], params["startDate"], params["endDate"])
 
         return {
             'statusCode': 200,
