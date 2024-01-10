@@ -15,11 +15,21 @@ import {
 } from "components/Icons/Icons";
 import Administration from "./views/Dashboard/Administration";
 
+import { IoPersonSharp } from "react-icons/io5";
+import { MdSpaceDashboard } from "react-icons/md";
+
 var dashRoutes = [
+  {
+    path: "/clients",
+    name: "Clients",
+    icon: <IoPersonSharp color="inherit" />,
+    component: Tables,
+    layout: "/admin",
+  },
   {
     path: "/dashboard",
     name: "Dashboard",
-    icon: <HomeIcon color="inherit" />,
+    icon: <MdSpaceDashboard color="inherit" />,
     component: Dashboard,
     layout: "/admin",
   },

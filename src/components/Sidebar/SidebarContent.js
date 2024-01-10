@@ -9,7 +9,7 @@ import {
     useColorModeValue
 } from "@chakra-ui/react";
 import IconBox from "components/Icons/IconBox";
-import { CreativeTimLogo, RubiconLogo } from "components/Icons/Icons";
+import { CreativeTimLogo, CquencyLogo } from "components/Icons/Icons";
 import { Separator } from "components/Separator/Separator";
 import { SidebarHelp } from "components/Sidebar/SidebarHelp";
 import React from "react";
@@ -195,11 +195,11 @@ const SidebarContent = ({ logoText, routes }) => {
         lineHeight="100%"
         mb="30px"
         fontWeight="bold"
-        justifyContent="center"
+        justifyContent="left"
         alignItems="center"
         fontSize="11px"
       >
-        {<RubiconLogo w="32px" h="32px" me="10px" />}
+        {<CquencyLogo w="32px" h="32px" me="10px" />}
         <Text fontSize="sm" mt="3px">
           {logoText}
         </Text>

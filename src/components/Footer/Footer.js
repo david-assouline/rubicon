@@ -29,7 +29,7 @@ export default function Footer(props) {
       >
         &copy; {1900 + new Date().getYear()}{" "}
         <Text as="span">
-          {"Rubicon Insuretech // David-Raphael Assouline"}
+          {"CQUENCY"}
         </Text>
       </Text>
       {/*<List display="flex">*/}

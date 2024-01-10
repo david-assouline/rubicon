@@ -1,5 +1,5 @@
 // Chakra Icons
-import { BellIcon, SearchIcon } from "@chakra-ui/icons";
+import { BellIcon, ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 // Chakra Imports
 import {
   Button,
@@ -32,6 +32,7 @@ import React, { useState } from "react";
 export default function HeaderLinks({ policyGUID, setPolicyGUID, ...props}) {
   const { variant, children, fixed, secondary, onOpen, ...rest } = props;
   const [localPolicyGUID, setLocalPolicyGUID] = useState('')
+  const [selectedMenuOption, setSelectedMenuOption] = useState("Policy");
   let history = useHistory();
 
   // Chakra Color Mode
@@ -64,14 +65,28 @@ export default function HeaderLinks({ policyGUID, setPolicyGUID, ...props}) {
       alignItems="center"
       flexDirection="row"
     >
+      <Menu>
+        <MenuButton as={Button} mr="10px">
+          <Flex align="center">
+            <Text fontSize="sm" mr="2">{selectedMenuOption}</Text> {/* Your text here */}
+            <ChevronDownIcon />
+          </Flex>
+        </MenuButton>
+        <MenuList>
+          <MenuItem onClick={() => history.push("/admin/clients")}>Client Search</MenuItem>
+          <MenuItem onClick={() => setSelectedMenuOption("Illustration")}>Illustration</MenuItem>
+          <MenuItem onClick={() => setSelectedMenuOption("Underwriting")}>Underwriting</MenuItem>
+          <MenuItem onClick={() => setSelectedMenuOption("Policy")}>Policy</MenuItem>
+          <MenuItem onClick={() => setSelectedMenuOption("Commission")}>Commission</MenuItem>
+          <MenuItem onClick={() => setSelectedMenuOption("Claim")}>Claim</MenuItem>
+        </MenuList>
+      </Menu>
+
       <InputGroup
         cursor="pointer"
         bg={inputBg}
         borderRadius="15px"
-        w={{
-          sm: "128px",
-          md: "200px",
-        }}
+        w={{ sm: "200px", md: "300px" }}
         me={{ sm: "auto", md: "20px" }}
         _focus={{
           borderColor: { mainBlue },
@@ -80,6 +95,23 @@ export default function HeaderLinks({ policyGUID, setPolicyGUID, ...props}) {
           borderColor: { mainBlue },
         }}
       >
+        {/*<InputLeftElement width="auto" p={0} m={0} children={*/}
+        {/*  <Menu>*/}
+        {/*    <MenuButton as={Button} w="100%" h="100%">*/}
+        {/*      <Flex align="center">*/}
+        {/*        <Text fontSize="sm" mr="2">{selectedMenuOption}</Text> /!* Your text here *!/*/}
+        {/*        <ChevronDownIcon />*/}
+        {/*      </Flex>*/}
+        {/*    </MenuButton>*/}
+        {/*    <MenuList>*/}
+        {/*      <MenuItem onClick={() => setSelectedMenuOption("Illustration")}>Illustration</MenuItem>*/}
+        {/*      <MenuItem onClick={() => setSelectedMenuOption("Underwriting")}>Underwriting</MenuItem>*/}
+        {/*      <MenuItem onClick={() => setSelectedMenuOption("Policy")}>Policy</MenuItem>*/}
+        {/*      <MenuItem onClick={() => setSelectedMenuOption("Commission")}>Commission</MenuItem>*/}
+        {/*      <MenuItem onClick={() => setSelectedMenuOption("Claim")}>Claim</MenuItem>*/}
+        {/*    </MenuList>*/}
+        {/*  </Menu>*/}
+        {/*}/>*/}
         <InputRightElement
           children={
             <IconButton
@@ -102,8 +134,8 @@ export default function HeaderLinks({ policyGUID, setPolicyGUID, ...props}) {
           fontSize="xs"
           fontStyle={"italic"}
           py="11px"
+          pl="6.5rem"
           color={mainText}
-          placeholder="Search"
           borderRadius="inherit"
           value={localPolicyGUID}
           onChange={(e) => setLocalPolicyGUID(e.target.value)}

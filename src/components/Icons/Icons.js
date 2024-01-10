@@ -122,8 +122,8 @@ export const CreativeTimLogo = createIcon({
   // </chakra.svg>
 });
 
-export const RubiconLogo = createIcon({
-  displayName: "RubiconLogo",
+export const CquencyLogo = createIcon({
+  displayName: "CquencyLogo",
   viewBox: "0 0 256 256",
   path: (
     <g
