@@ -12,17 +12,17 @@ import simpleBlueBackground from "../../../../assets/img/simplebluebackground.jp
 export function AddNewClient() {
   return (
     <VStack
-      bg="white"
+      bg="blue.500"
       spacing={4}
       p={5}
-      borderRadius="lg"
+      borderRadius="20px"
       align="stretch"
       justify="center"
     >
       <Center>
-        <MdOutlinePersonAddAlt size="50px"/>
+        <MdOutlinePersonAddAlt color="white" size="50px"/>
       </Center>
-      <Button colorScheme="blue" variant="solid" size="md">
+      <Button color="white" variant="solid" size="md" textColor="black">
         Create New Client
       </Button>
     </VStack>

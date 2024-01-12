@@ -1,5 +1,4 @@
 setup.py
-resources/example.py
 resources/secrets.py
 src.egg-info/PKG-INFO
 src.egg-info/SOURCES.txt

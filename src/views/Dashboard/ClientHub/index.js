@@ -1,98 +1,68 @@
 import React, { useEffect, useState } from "react";
-import PolicyTable from "./Components/PolicyTable";
-import SampleProjects from "./Components/(sample)Projects";
-import { dashboardTableData } from "variables/general";
 import ClientSearch from "./Components/ClientSearch";
-import PolicyButtons from "./Components/PolicyButtons";
-import { PolicySearchField } from "./Components/CustomButtons/PolicySearchField";
 
 import {
   Flex,
-  Input,
-  Stat,
-  StatLabel,
-  StatNumber,
-  Text,
-  Button,
-  Box,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  IconButton, VStack, Image, Grid, Center, Icon
+  Grid
 } from "@chakra-ui/react";
-import { AddIcon, ExternalLinkIcon, SearchIcon } from "@chakra-ui/icons";
-import CardHeader from "../../../components/Card/CardHeader";
-import CardBody from "../../../components/Card/CardBody";
-import Card from "../../../components/Card/Card";
-import BuiltByDevelopers from "../Dashboard/components/BuiltByDevelopers";
-import logoChakra from "../../../assets/svg/logo-white.svg";
-import WorkWithTheRockets from "../Dashboard/components/WorkWithTheRockets";
-import peopleImage from "../../../assets/img/people-image.png";
 import { AddNewClient } from "./Components/AddNewClient";
+import { MiniCardGrid } from "./Components/MiniCardGrid";
+import PolicyTable from "../Administration/Components/PolicyTable";
+import ClientSearchResults from "./Components/ClientSearchResults";
 
 function ClientHub() {
   const [clientData, setClientData] = useState([]);
+  const [searchType, setSearchType] = useState("");
+  const [searchParams, setSearchParams] = useState({ });
+  const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const fetchData = async () => {
-  //   try {
-  //     setIsLoading(true);
-  //     const response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getpolicy?type="regular"&policyGUID=${policyGUID}`);
-  //     const data = await response.json();
-  //     setPolicyData(data);
-  //
-  //   } catch (error) {
-  //     console.error('Error fetching data: ', error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&firstName=${searchParams.firstName}&lastName=${searchParams.lastName}`);
+      const data = await response.json();
+      setSearchResults(data);
 
-  // useEffect(() => {
-  //   if (policyGUID) {
-  //     fetchData();
-  //   }
-  // }, [policyGUID]);
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (searchType && searchParams) {
+      fetchData();
+    }
+  }, [searchType, searchParams]);
 
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
       <Grid
-        templateColumns="1fr 7fr"
+        templateColumns="2fr 3fr 1fr"
         templateRows="1fr"
         my="26px"
         gap="24px"
       >
-        <AddNewClient/>
         <ClientSearch
-          title={"Search"}
-          captions={["Transaction", "Date", "Detail", "Status", "Action"]}
+          title={"SEARCH"}
+          setSearchType={setSearchType}
+          setSearchParams={setSearchParams}
           // setPolicyData={setPolicyData}
           // policyGUID={policyGUID}
           // isLoading={isLoading}
           // setIsLoading={setIsLoading}
           // onActionComplete={fetchData}
         />
+        <MiniCardGrid/>
+        <AddNewClient/>
       </Grid>
-      {/*<PolicyButtons*/}
-      {/*  title={"Filters"}*/}
-      {/*  captions={["Transaction", "Date", "Detail", "Status", "Action"]}*/}
-      {/*  policyGUID={policyGUID}*/}
-      {/*  isLoading={isLoading}*/}
-      {/*  setIsLoading={setIsLoading}*/}
-      {/*  onActionComplete={fetchData}*/}
-      {/*/>*/}
-      {/*<PolicyTable*/}
-      {/*  title={"Policy"}*/}
-      {/*  captions={["Transaction", "Date", "GUID", "Status", "Action"]}*/}
-      {/*  data={policyData}*/}
-      {/*  policyGUID={policyGUID}*/}
-      {/*  isLoading={isLoading}*/}
-      {/*  setIsLoading={setIsLoading}*/}
-      {/*  onActionComplete={fetchData}*/}
-      {/*/>*/}
+      <ClientSearchResults
+        title={"Search Results"}
+        captions={["ID", "Customer", "Date of Birth", "Client Type", "Status"]}
+        searchResults={searchResults}
+      />
     </Flex>
   );
 }

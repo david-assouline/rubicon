@@ -17,6 +17,14 @@
           ],
           "category": "function",
           "resourceName": "RubiconGetPolicy"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "CquencyGetClient"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -25,6 +33,11 @@
   },
   "auth": {},
   "function": {
+    "CquencyGetClient": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "RubiconCreateApplication": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -37,6 +50,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_CquencyGetClient_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "CquencyGetClient"
+        }
+      ]
+    },
+    "AMPLIFY_function_CquencyGetClient_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "CquencyGetClient"
+        }
+      ]
+    },
     "AMPLIFY_function_RubiconCreateApplication_deploymentBucketName": {
       "usedBy": [
         {

@@ -14,6 +14,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/api/functions/getclient": {
+      "name": "/api/functions/getclient",
+      "lambdaFunction": "CquencyGetClient",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

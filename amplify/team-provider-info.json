@@ -15,11 +15,15 @@
       "function": {
         "RubiconCreateApplication": {
           "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
-          "s3Key": "amplify-builds/RubiconCreateApplication-70342f4449417a4e7252-build.zip"
+          "s3Key": "amplify-builds/RubiconCreateApplication-616d6b6e6e5143466d68-build.zip"
         },
         "RubiconGetPolicy": {
           "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
-          "s3Key": "amplify-builds/RubiconGetPolicy-645072573137634a4935-build.zip"
+          "s3Key": "amplify-builds/RubiconGetPolicy-6a3070494934454e5252-build.zip"
+        },
+        "CquencyGetClient": {
+          "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
+          "s3Key": "amplify-builds/CquencyGetClient-366d486d616a374b3643-build.zip"
         }
       },
       "api": {

@@ -73,7 +73,7 @@ export default function HeaderLinks({ policyGUID, setPolicyGUID, ...props}) {
           </Flex>
         </MenuButton>
         <MenuList>
-          <MenuItem onClick={() => history.push("/admin/clients")}>Client Search</MenuItem>
+          <MenuItem onClick={() => history.push("/admin/clienthub")}>Client Search</MenuItem>
           <MenuItem onClick={() => setSelectedMenuOption("Illustration")}>Illustration</MenuItem>
           <MenuItem onClick={() => setSelectedMenuOption("Underwriting")}>Underwriting</MenuItem>
           <MenuItem onClick={() => setSelectedMenuOption("Policy")}>Policy</MenuItem>
