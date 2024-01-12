@@ -134,7 +134,6 @@ export default function HeaderLinks({ policyGUID, setPolicyGUID, ...props}) {
           fontSize="xs"
           fontStyle={"italic"}
           py="11px"
-          pl="6.5rem"
           color={mainText}
           borderRadius="inherit"
           value={localPolicyGUID}

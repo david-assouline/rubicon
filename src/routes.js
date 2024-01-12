@@ -14,16 +14,17 @@ import {
   SupportIcon,
 } from "components/Icons/Icons";
 import Administration from "./views/Dashboard/Administration";
+import ClientHub from "./views/Dashboard/ClientHub";
 
 import { IoPersonSharp } from "react-icons/io5";
 import { MdSpaceDashboard } from "react-icons/md";
 
 var dashRoutes = [
   {
-    path: "/clients",
-    name: "Clients",
+    path: "/clienthub",
+    name: "Client Hub",
     icon: <IoPersonSharp color="inherit" />,
-    component: Tables,
+    component: ClientHub,
     layout: "/admin",
   },
   {
@@ -68,21 +69,21 @@ var dashRoutes = [
     component: Administration,
     layout: "/admin",
   },
-  {
-    name: "ACCOUNT",
-    category: "account",
-    state: "pageCollapse",
-    views: [
-      {
-        path: "/profile",
-        name: "Profile",
-        icon: <PersonIcon color="inherit" />,
-        secondaryNavbar: true,
-        component: Profile,
-        layout: "/admin",
-      },
-    ],
-  },
+  // {
+  //   name: "ACCOUNT",
+  //   category: "account",
+  //   state: "pageCollapse",
+  //   views: [
+  //     {
+  //       path: "/profile",
+  //       name: "Profile",
+  //       icon: <PersonIcon color="inherit" />,
+  //       secondaryNavbar: true,
+  //       component: Profile,
+  //       layout: "/admin",
+  //     },
+  //   ],
+  // },
 ];
 
 export default dashRoutes;
