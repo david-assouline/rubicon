@@ -91,10 +91,10 @@ function SearchResultRow(props) {
     </Tr>
       <Tr display={isExpanded ? "table-row" : "none"}>
         <Td colSpan="6">
-          <Box p={4}>
+          <Box p={2}>
             <Text fontSize="lg" mb={3}>Client Details</Text>
             <Divider mb={4} borderColor="gray.300" width="200px" borderWidth="1px"/>
-            <Grid templateColumns="1fr 1fr 1fr 1fr" gap={6}>
+            <Grid templateColumns="1fr 1fr 1fr" gap={5}>
               <Box>
                 <Text fontWeight="bold" mb={1}>Email Address</Text>
                 <Text>david.assouline@hotmail.com</Text>
