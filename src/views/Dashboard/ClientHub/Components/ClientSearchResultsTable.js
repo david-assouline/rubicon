@@ -17,11 +17,12 @@ import CardHeader from "components/Card/CardHeader.js";
 import React from "react";
 import SearchResultRow from "./SearchResultRow";
 
-const PolicyTable = ({ title, captions, searchResults, isLoading, setIsLoading, onActionComplete }) => {
+const ClientSearchResultsTable = ({ title, captions, searchResults, isLoading }) => {
   const textColor = useColorModeValue("gray.700", "white");
+
   return (
     <Card my='10px' overflowX={{ sm: "scroll", xl: "hidden" }}>
-      <CardHeader p='6px 0px 22px 0px'>
+      <CardHeader p='0px 0px 5px 0px'>
         <Text fontSize='xl' color={textColor} fontWeight='bold'>
           {title}
         </Text>
@@ -76,4 +77,4 @@ const PolicyTable = ({ title, captions, searchResults, isLoading, setIsLoading, 
   );
 };
 
-export default PolicyTable;
+export default ClientSearchResultsTable;

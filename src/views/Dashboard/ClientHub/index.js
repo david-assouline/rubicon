@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ClientSearch from "./Components/ClientSearch";
+import ClientSearchForm from "./Components/ClientSearchForm";
 
 import {
   Flex,
@@ -7,8 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { AddNewClient } from "./Components/AddNewClient";
 import { MiniCardGrid } from "./Components/MiniCardGrid";
-import PolicyTable from "../Administration/Components/PolicyTable";
-import ClientSearchResults from "./Components/ClientSearchResults";
+import ClientSearchResults from "./Components/ClientSearchResultsTable";
 
 function ClientHub() {
   const [clientData, setClientData] = useState([]);
@@ -22,6 +21,7 @@ function ClientHub() {
       setIsLoading(true);
       const response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&firstName=${searchParams.firstName}&lastName=${searchParams.lastName}`);
       const data = await response.json();
+      console.log("fetching search results")
       setSearchResults(data);
 
     } catch (error) {
@@ -45,23 +45,21 @@ function ClientHub() {
         my="26px"
         gap="24px"
       >
-        <ClientSearch
+        <ClientSearchForm
           title={"SEARCH"}
           setSearchType={setSearchType}
           setSearchParams={setSearchParams}
-          // setPolicyData={setPolicyData}
-          // policyGUID={policyGUID}
-          // isLoading={isLoading}
-          // setIsLoading={setIsLoading}
-          // onActionComplete={fetchData}
         />
         <MiniCardGrid/>
         <AddNewClient/>
       </Grid>
       <ClientSearchResults
         title={"Search Results"}
-        captions={["ID", "Customer", "Date of Birth", "Client Type", "Status"]}
+        captions={["ID", "Customer", "Date of Birth", "Client Type", "Status", ""]}
         searchResults={searchResults}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        onActionComplete={fetchData}
       />
     </Flex>
   );

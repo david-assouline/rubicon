@@ -16,7 +16,7 @@ import React, { useState } from "react";
 import { CheckIcon, Search2Icon } from "@chakra-ui/icons";
 
 
-const ClientSearch = ({setSearchType, setSearchParams}) => {
+const ClientSearchForm = ({setSearchType, setSearchParams}) => {
   const [activeFilter, setActiveFilter] = useState('Individual');
   const [searchValues, setSearchValues] = useState({ firstName: '', lastName: '', companyName: '', groupName: '', clientID: '' });
   const textColor = useColorModeValue("gray.700", "white");
@@ -142,4 +142,4 @@ const ClientSearch = ({setSearchType, setSearchParams}) => {
   );
 };
 
-export default ClientSearch;
+export default ClientSearchForm;

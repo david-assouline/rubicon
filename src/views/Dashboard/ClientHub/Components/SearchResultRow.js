@@ -1,37 +1,33 @@
 import {
-  Badge,
-  Button,
-  Flex, IconButton,
+  Badge, Box,
+  Button, Collapse, Divider,
+  Flex, Grid, HStack, IconButton, Link,
   Td,
   Text,
   Tr,
-  useColorModeValue
+  useColorModeValue, VStack
 } from "@chakra-ui/react";
 
 import React, { useState } from "react";
-import { ArrowForwardIcon, ChevronDownIcon, ChevronUpIcon, RepeatClockIcon } from "@chakra-ui/icons";
+import {
+  ArrowForwardIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ExternalLinkIcon,
+  RepeatClockIcon,
+  TriangleDownIcon, TriangleUpIcon
+} from "@chakra-ui/icons";
 
 
 function SearchResultRow(props) {
-  const { ID, customer, dateOfBirth, clientType, status, onActionComplete } = props;
-  const textColor = useColorModeValue("gray.700", "white");
-  const bgStatus = useColorModeValue("gray.400", "#1a202c");
-  const colorStatus = useColorModeValue("white", "gray.400");
+  const { ID, customer, dateOfBirth, clientType, status, onActionComplete, ...clientDetails } = props;
   const [isExpanded, setIsExpanded] = useState(false);
+  const textColor = useColorModeValue("gray.700", "white");
+  const bgStatus = status === "Active" ? "green.400" : "gray.400";
+  const colorStatus = status === "Active" ? "white" : "gray.700";
 
   const toggleRow = () => {
     setIsExpanded(!isExpanded);
-  };
-
-
-  const createApplicationLambda = async (action, trxGUID) => {
-    try {
-      const response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/transactions/createapplication?action=${action}&trxGUID=${trxGUID}`);
-      const data = await response.json();
-
-    } catch (error) {
-      console.error('Error calling Lambda function:', error);
-    }
   };
 
   return (
@@ -74,33 +70,61 @@ function SearchResultRow(props) {
       </Td>
 
       <Td>
-        <Badge
-          bg={status === "01" ? "green.400" : bgStatus}
-          color={status === "02" ? "white" : colorStatus}
-          fontSize="16px"
-          p="3px 10px"
-          borderRadius="8px"
-        >
+        {/*<Badge*/}
+        {/*  bg={status === "01" ? "green.400" : bgStatus}*/}
+        {/*  color={status === "02" ? "white" : colorStatus}*/}
+        {/*  fontSize="16px"*/}
+        {/*  p="3px 10px"*/}
+        {/*  borderRadius="8px"*/}
+        {/*>*/}
           {status}
-        </Badge>
+        {/*</Badge>*/}
       </Td>
       <Td>
         <IconButton
-          icon={isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          icon={isExpanded ? <TriangleUpIcon color="gray.400"/> : <TriangleDownIcon color="gray.400"/>}
           onClick={toggleRow}
           aria-label="Expand Row"
+          variant="ghost"
         />
       </Td>
     </Tr>
-    <Tr display={isExpanded ? "table-row" : "none"}>
-      <Td colSpan="5">
-        {/* Here you can add your expanded content */}
-        <Text fontSize="md" color={textColor}>
-          More details about {customer}
-        </Text>
-        {/* You can add more detailed information here */}
-      </Td>
-    </Tr>
+      <Tr display={isExpanded ? "table-row" : "none"}>
+        <Td colSpan="6">
+          <Box p={4}>
+            <Text fontSize="lg" mb={3}>Client Details</Text>
+            <Divider mb={4} borderColor="gray.300" width="200px" borderWidth="1px"/>
+            <Grid templateColumns="1fr 1fr 1fr 1fr" gap={6}>
+              <Box>
+                <Text fontWeight="bold" mb={1}>Email Address</Text>
+                <Text>david.assouline@hotmail.com</Text>
+              </Box>
+              <Box>
+                <Text fontWeight="bold" mb={1}>Primary Phone Number</Text>
+                <Text>514-824-0228</Text>
+              </Box>
+              <Box>
+                <Text fontWeight="bold" mb={1}>Identification Type</Text>
+                <Text>Driver's license</Text>
+              </Box>
+              <Box>
+                <Text fontWeight="bold" mb={1}>Identification Number</Text>
+                <Text>ASSOUD-28022024313514</Text>
+              </Box>
+              <Box gridColumn="span 2">
+                <Text fontWeight="bold" mb={1}>Primary Address</Text>
+                <Text>102-815 avenue plymouth, Mont-Royal, Quebec, H4P 0C6</Text>
+              </Box>
+              <Box gridColumn="span 2">
+                <br/>
+                <Button rightIcon={<ExternalLinkIcon />} colorScheme="blue" variant="link">
+                  Go To Client
+                </Button>
+              </Box>
+            </Grid>
+          </Box>
+        </Td>
+      </Tr>
     </React.Fragment>
   );
 }
