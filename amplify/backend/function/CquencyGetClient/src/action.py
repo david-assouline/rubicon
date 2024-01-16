@@ -21,12 +21,31 @@ def get_db_connection():
     )
 
 
-def search_clients_by_name(first_name, last_name):
+def search_clients_by_client_id(client_id):
     connection = get_db_connection()
     try:
         with connection.cursor(pymysql.cursors.DictCursor) as cursor:
             sql = """
                 SELECT * FROM cquency.CLIENT
+                WHERE ClientID = %s;
+            """
+            cursor.execute(sql, (client_id,))
+            result = cursor.fetchall()
+            return json.dumps(result, default=default_converter)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return json.dumps({'error': str(e)})
+    finally:
+        connection.close()
+
+
+def search_clients_by_individual_name(first_name, last_name):
+    connection = get_db_connection()
+    try:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+            sql = """
+                SELECT * 
+                FROM cquency.CLIENT 
                 WHERE FirstName LIKE CONCAT('%%', %s, '%%')
                 AND LastName LIKE CONCAT('%%', %s, '%%');
             """
@@ -40,4 +59,75 @@ def search_clients_by_name(first_name, last_name):
         connection.close()
 
 
-print(search_clients_by_name("Ralph", "Edwards"))
+def search_clients_by_company_name(company_name):
+    connection = get_db_connection()
+    try:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+            sql = """
+                SELECT * FROM cquency.CLIENT
+                WHERE CompanyName LIKE CONCAT('%%', %s, '%%');
+            """
+            cursor.execute(sql, (company_name,))
+            result = cursor.fetchall()
+            return json.dumps(result, default=default_converter)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return json.dumps({'error': str(e)})
+    finally:
+        connection.close()
+
+
+def search_clients_by_group_name(group_name):
+    connection = get_db_connection()
+    try:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+            sql = """
+                SELECT * FROM cquency.CLIENT
+                WHERE GroupName LIKE CONCAT('%%', %s, '%%');
+            """
+            cursor.execute(sql, (group_name,))
+            result = cursor.fetchall()
+            return json.dumps(result, default=default_converter)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return json.dumps({'error': str(e)})
+    finally:
+        connection.close()
+
+
+def get_client_details_by_client_guid(client_guid):
+    connection = get_db_connection()
+    try:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+            sql = """
+                SELECT * FROM cquency.CLIENTDETAIL
+                WHERE ClientGUID = %s;
+            """
+            cursor.execute(sql, (client_guid,))
+            result = cursor.fetchall()
+            return json.dumps(result, default=default_converter)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return json.dumps({'error': str(e)})
+    finally:
+        connection.close()
+
+
+def get_address_details_by_client_guid(client_guid):
+    connection = get_db_connection()
+    try:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+            sql = """
+                SELECT *
+                FROM cquency.ADDRESSDETAIL
+                JOIN cquency.ADDRESS ON ADDRESS.ADDRESSGUID = ADDRESSDETAIL.ADDRESSGUID
+                WHERE ADDRESS.ClientGUID = %s;
+            """
+            cursor.execute(sql, (client_guid,))
+            result = cursor.fetchall()
+            return json.dumps(result, default=default_converter)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return json.dumps({'error': str(e)})
+    finally:
+        connection.close()

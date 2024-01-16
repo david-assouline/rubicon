@@ -25,7 +25,6 @@ const ClientSearchForm = ({setSearchType, setSearchParams}) => {
   const hoverBg = useColorModeValue('blue.500', 'blue.700');
   const hoverTextColor = 'white';
 
-
   const handleSearch = () => {
     setSearchType(activeFilter);
     switch (activeFilter) {
@@ -44,6 +43,9 @@ const ClientSearchForm = ({setSearchType, setSearchParams}) => {
       default:
         break;
     }
+
+    // Reset searchValues to initial state
+    setSearchValues({ firstName: '', lastName: '', companyName: '', groupName: '', clientID: '' });
   };
 
   const renderInputField = () => {

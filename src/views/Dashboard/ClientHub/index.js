@@ -17,9 +17,26 @@ function ClientHub() {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
+    let url = ""
+
+    switch(searchType) {
+      case "Individual":
+        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&firstName=${searchParams.firstName}&lastName=${searchParams.lastName}`
+        break;
+      case "Company":
+        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&companyName=${searchParams.companyName}`
+        break;
+      case "Group":
+        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&groupName=${searchParams.groupName}`
+        break;
+      case "Client ID":
+        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&clientID=${searchParams.clientID}`
+        break;
+    }
+
     try {
       setIsLoading(true);
-      const response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&firstName=${searchParams.firstName}&lastName=${searchParams.lastName}`);
+      const response = await fetch(url);
       const data = await response.json();
       console.log("fetching search results")
       setSearchResults(data);

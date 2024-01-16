@@ -52,19 +52,20 @@ const ClientSearchResultsTable = ({ title, captions, searchResults, isLoading })
                 <SearchResultRow
                   key={index}
                   ID={record["ClientID"]}
-                  customer={record["FirstName"] + " " + record["LastName"]}
-                  dateOfBirth={record["DateOfBirth"]}
+                  customer={record["ClientType"] === '01' ? record["FirstName"] + " " + record["LastName"] : record["CompanyName"]}
+                  dateOfBirth={record["ClientType"] === '01' ? record["DateOfBirth"] : "N/A"}
                   clientType={record["ClientType"]}
                   status={record["ClientStatus"]}
+                  clientGUID={record["ClientGUID"]}
                 />
               ))
             ) : searchResults && searchResults.length === 0 ? (
               <Tr>
                 <Td colSpan={captions.length}>
-                  <Alert status="error">
-                    <AlertIcon />
-                    <AlertDescription>Search Returned 0 Results</AlertDescription>
-                  </Alert>
+                  {/*<Alert status="error">*/}
+                  {/*  <AlertIcon />*/}
+                  {/*  <AlertDescription>Search Returned 0 Results</AlertDescription>*/}
+                  {/*</Alert>*/}
                 </Td>
               </Tr>
             ) : (
