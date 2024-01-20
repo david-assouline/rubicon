@@ -21,16 +21,16 @@ function ClientSearch() {
 
     switch(searchType) {
       case "Individual":
-        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&firstName=${searchParams.firstName}&lastName=${searchParams.lastName}`
+        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getclient?type=${searchType}&firstName=${searchParams.firstName}&lastName=${searchParams.lastName}`
         break;
       case "Company":
-        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&companyName=${searchParams.companyName}`
+        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getclient?type=${searchType}&companyName=${searchParams.companyName}`
         break;
       case "Group":
-        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&groupName=${searchParams.groupName}`
+        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getclient?type=${searchType}&groupName=${searchParams.groupName}`
         break;
       case "Client ID":
-        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev//api/functions/getclient?type=${searchType}&clientID=${searchParams.clientID}`
+        url = `https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getclient?type=${searchType}&clientID=${searchParams.clientID}`
         break;
     }
 

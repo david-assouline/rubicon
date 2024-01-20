@@ -131,3 +131,21 @@ def get_address_details_by_client_guid(client_guid):
         return json.dumps({'error': str(e)})
     finally:
         connection.close()
+
+
+def get_client_roles_by_client_guid(client_guid):
+    connection = get_db_connection()
+    try:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+            sql = """
+                SELECT * FROM cquency.ROLE WHERE ROLE.ClientGUID = %s;
+            """
+            cursor.execute(sql, (client_guid,))
+            result = cursor.fetchall()
+            print(result)
+            return json.dumps(result, default=default_converter)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return json.dumps({'error': str(e)})
+    finally:
+        connection.close()

@@ -6,23 +6,25 @@ import {
 } from "@chakra-ui/react";
 
 import React from "react";
-import { InsertTrxButton } from "./CustomButtons/InsertTrxButton";
-import { ViewsButton } from "./CustomButtons/ViewsButton";
+import { ClientViewsButton } from "./CustomButtons/ClientViewsButton";
+import {
+  ClientInsertActivityButton,
+} from "./CustomButtons/ClientInsertTrxButton";
 
-const PolicyButtons = ({ title, policyGUID, isLoading, setIsLoading, onActionComplete }) => {
+const ClientButtons = ({ title, clientGUID, isLoading, setIsLoading, onActionComplete }) => {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <Box mt={4} mb={3}>
       <Stack spacing={8} direction="row" align="center">
-        <ViewsButton/>
-        <InsertTrxButton
+        <ClientViewsButton/>
+        <ClientInsertActivityButton
           setIsLoading={setIsLoading}
           onActionComplete={onActionComplete}
-          policyGUID={policyGUID}
+          clientGUID={clientGUID}
         />
       </Stack>
     </Box>
   );
 };
 
-export default PolicyButtons;
+export default ClientButtons;

@@ -2,11 +2,8 @@
 import { Flex } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import PolicyTable from "./Components/PolicyTable";
-import SampleProjects from "./Components/(sample)Projects";
-import { dashboardTableData } from "variables/general";
 import PolicyFilter from "./Components/PolicyFilter";
 import PolicyButtons from "./Components/PolicyButtons";
-import { PolicySearchField } from "./Components/CustomButtons/PolicySearchField";
 
 function Policy({ policyGUID, setPolicyGUID, ...props }) {
   const [policyData, setPolicyData] = useState([]);
@@ -45,7 +42,6 @@ function Policy({ policyGUID, setPolicyGUID, ...props }) {
         />
       <PolicyButtons
         title={"Filters"}
-        captions={["Transaction", "Date", "Detail", "Status", "Action"]}
         policyGUID={policyGUID}
         isLoading={isLoading}
         setIsLoading={setIsLoading}

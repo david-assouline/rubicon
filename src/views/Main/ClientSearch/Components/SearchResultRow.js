@@ -80,6 +80,7 @@ function SearchResultRow(props) {
   const handleGoToClient = () => {
     clientDetails.push({ formattedAddress: addressString })
     clientDetails.push({ customer: customer })
+    clientDetails.push({ clientGUID: clientGUID })
     console.log(clientDetails)
     history.push('/admin/client/details', { clientState: clientDetails });
   };
