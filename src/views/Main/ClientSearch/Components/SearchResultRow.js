@@ -68,10 +68,11 @@ function SearchResultRow(props) {
   async function buildAddressString(addressDetails) {
     const houseNumber = addressDetails.find(obj => obj["FieldName"] === "HouseNumber")?.["TextValue"];
     const streetName = addressDetails.find(obj => obj["FieldName"] === "StreetName")?.["TextValue"];
+    const city = addressDetails.find(obj => obj["FieldName"] === "City")?.["TextValue"];
     const province = addressDetails.find(obj => obj["FieldName"] === "Province")?.["TextValue"];
     const country = addressDetails.find(obj => obj["FieldName"] === "Country")?.["TextValue"];
     const postalCode = addressDetails.find(obj => obj["FieldName"] === "PostalCode")?.["TextValue"];
-    return `${houseNumber} ${streetName}, ${province}, ${country}, ${postalCode}`
+    return `${houseNumber} ${streetName}, ${city}, ${province}, ${country}, ${postalCode}`
     }
 
 
@@ -145,10 +146,6 @@ function SearchResultRow(props) {
                 {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "EmailAddress")?.["TextValue"] || "could not find"}</Text>}
               </Box>
               <Box>
-                <Text fontWeight="bold" mb={1}>Primary Phone Number</Text>
-                {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "PrimaryPhoneNumber")?.["TextValue"] || "could not find"}</Text>}
-              </Box>
-              <Box>
                 <Text fontWeight="bold" mb={1}>Identification Type</Text>
                 {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "IdentificationType")?.["TextValue"] || "could not find"}</Text>}
               </Box>
@@ -156,11 +153,15 @@ function SearchResultRow(props) {
                 <Text fontWeight="bold" mb={1}>Identification Number</Text>
                 {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "IdentificationNumber")?.["TextValue"] || "could not find"}</Text>}
               </Box>
-              <Box gridColumn="span 2">
+              <Box>
                 <Text fontWeight="bold" mb={1}>Primary Address</Text>
                 {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{addressString}</Text>}
               </Box>
-              <Box gridColumn="span 2">
+              <Box>
+                <Text fontWeight="bold" mb={1}>Primary Phone Number</Text>
+                {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "PrimaryPhoneNumber")?.["TextValue"] || "could not find"}</Text>}
+              </Box>
+              <Box>
                 <br/>
                 <Button rightIcon={<ExternalLinkIcon />} colorScheme="blue" variant="link">
                   Go To Client

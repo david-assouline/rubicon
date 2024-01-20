@@ -8,7 +8,7 @@ import PolicyFilter from "./Components/PolicyFilter";
 import PolicyButtons from "./Components/PolicyButtons";
 import { PolicySearchField } from "./Components/CustomButtons/PolicySearchField";
 
-function Administration({ policyGUID, setPolicyGUID, ...props }) {
+function Policy({ policyGUID, setPolicyGUID, ...props }) {
   const [policyData, setPolicyData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -69,4 +69,4 @@ function Administration({ policyGUID, setPolicyGUID, ...props }) {
   );
 }
 
-export default Administration;
+export default Policy;

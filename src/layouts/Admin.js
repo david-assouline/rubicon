@@ -68,31 +68,21 @@ export default function Dashboard(props) {
 		return activeNavbar;
 	};
 	const getRoutes = (routes) => {
-		return routes.map((prop, key) => {
-			// ... handle collapse and category as before
-
-			if (prop.layout === '/admin') {
-				if (prop.path === '/administration') {
+		return routes.map((category) => {
+			return category.views.map((prop, key) => {
+				if (prop.layout === '/admin') {
 					return (
 						<Route
 							path={prop.layout + prop.path}
-							render={(routeProps) => (
-								<prop.component
-									{...routeProps}
-									policyGUID={policyGUID}
-									setPolicyGUID={setPolicyGUID}
-								/>
-							)}
+							component={prop.component}
 							key={key}
 						/>
 					);
 				} else {
-					return <Route path={prop.layout + prop.path} component={prop.component} key={key} />;
+					return null;
 				}
-			} else {
-				return null;
-			}
-		});
+			});
+		}).flat();
 	};
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	document.documentElement.dir = 'ltr';

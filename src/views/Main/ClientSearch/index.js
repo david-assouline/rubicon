@@ -9,7 +9,7 @@ import { AddNewClient } from "./Components/AddNewClient";
 import { MiniCardGrid } from "./Components/MiniCardGrid";
 import ClientSearchResults from "./Components/ClientSearchResultsTable";
 
-function ClientHub() {
+function ClientSearch() {
   const [clientData, setClientData] = useState([]);
   const [searchType, setSearchType] = useState("");
   const [searchParams, setSearchParams] = useState({ });
@@ -82,4 +82,4 @@ function ClientHub() {
   );
 }
 
-export default ClientHub;
+export default ClientSearch;

@@ -1,9 +1,3 @@
-// import
-import Dashboard from "views/Dashboard/Dashboard";
-import Tables from "views/Dashboard/Illustrate";
-import Billing from "views/Dashboard/Underwriting";
-import Profile from "views/Dashboard/Profile";
-
 import {
   HomeIcon,
   StatsIcon,
@@ -13,27 +7,58 @@ import {
   RocketIcon,
   SupportIcon,
 } from "components/Icons/Icons";
-import Administration from "./views/Dashboard/Administration";
-import ClientHub from "./views/Dashboard/ClientHub";
+import Policy from "./views/Main/Policy";
+import ClientSearch from "./views/Main/ClientSearch";
+import Dashboard from "./views/Main/Dashboard";
 
 import { IoPersonSharp } from "react-icons/io5";
+import { MdOutlinePolicy } from "react-icons/md";
 import { MdSpaceDashboard } from "react-icons/md";
+import { InfoOutlineIcon, SearchIcon, ViewIcon } from "@chakra-ui/icons";
 
 var dashRoutes = [
   {
-    path: "/clienthub",
-    name: "Client Hub",
-    icon: <IoPersonSharp color="inherit" />,
-    component: ClientHub,
-    layout: "/admin",
+    name: "CLIENT",
+    category: "client",
+    state: "pageCollapse",
+    views: [
+      {
+        name: "Search",
+        path: "/client/search",
+        icon: <SearchIcon color="inherit" />,
+        component: ClientSearch,
+        layout: "/admin",
+      },
+      {
+        name: "Details",
+        path: "/client/details",
+        icon: <InfoOutlineIcon color="inherit" />,
+        component: ClientSearch,
+        layout: "/admin",
+      },
+    ],
   },
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: <MdSpaceDashboard color="inherit" />,
-    component: Dashboard,
-    layout: "/admin",
+    name: "POLICY",
+    category: "policy",
+    state: "pageCollapse",
+    views: [
+      {
+        name: "Policy",
+        path: "/policy/search",
+        icon: <MdOutlinePolicy color="inherit" />,
+        component: Policy,
+        layout: "/admin",
+      },
+    ],
   },
+  // {
+  //   path: "/dashboard",
+  //   name: "Dashboard",
+  //   icon: <MdSpaceDashboard color="inherit" />,
+  //   component: Dashboard,
+  //   layout: "/admin",
+  // },
   // {
   //   path: "/illustration",
   //   name: "Illustration",
@@ -48,13 +73,13 @@ var dashRoutes = [
   //   component: Billing,
   //   layout: "/admin",
   // },
-  {
-    path: "/administration",
-    name: "Administration",
-    icon: <CreditIcon color="inherit" />,
-    component: Administration,
-    layout: "/admin",
-  },
+  // {
+  //   path: "/policy",
+  //   name: "Policy",
+  //   icon: <MdOutlinePolicy color="inherit" />,
+  //   component: Policy,
+  //   layout: "/admin",
+  // },
   // {
   //   path: "/commissions",
   //   name: "Commissions",
