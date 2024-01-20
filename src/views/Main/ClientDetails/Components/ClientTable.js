@@ -14,11 +14,10 @@ import {
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
-import TablesTableRow from "components/Tables/TablesTableRow";
 import React from "react";
-import PolicyTableRow from "./PolicyTableRow";
+import ClientTableRow from "./ClientTableRow";
 
-const PolicyTable = ({ title, captions, data, policyGUID, isLoading, setIsLoading, onActionComplete }) => {
+const ClientTable = ({ title, captions, data, policyGUID, isLoading, setIsLoading, onActionComplete }) => {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <Card my='10px' overflowX={{ sm: "scroll", xl: "hidden" }}>
@@ -49,15 +48,15 @@ const PolicyTable = ({ title, captions, data, policyGUID, isLoading, setIsLoadin
               </Tr>
             ) : data && data.length > 0 ? (
               data.map((record, index) => (
-                <PolicyTableRow
-                  key={index} // Unique key for each row
-                  transactionName={record["TRXNAME"]}
-                  date={record["TRXDATETIME"]}
-                  trxGUID={record["TRXGUID"]}
-                  status={record["STATUS"]}
-                  action={record["STATUS"]}
-                  setIsLoading={setIsLoading}
-                  onActionComplete={onActionComplete}
+                <ClientTableRow
+                  // key={index} // Unique key for each row
+                  // transactionName={record["TRXNAME"]}
+                  // date={record["TRXDATETIME"]}
+                  // trxGUID={record["TRXGUID"]}
+                  // status={record["STATUS"]}
+                  // action={record["STATUS"]}
+                  // setIsLoading={setIsLoading}
+                  // onActionComplete={onActionComplete}
                 />
               ))
             ) : policyGUID ? (
@@ -65,7 +64,7 @@ const PolicyTable = ({ title, captions, data, policyGUID, isLoading, setIsLoadin
                 <Td colSpan={captions.length}>
                   <Alert status="error">
                     <AlertIcon />
-                    <AlertDescription>No Policy found for {policyGUID}</AlertDescription>
+                    <AlertDescription>No client found for {clientGUID}</AlertDescription>
                   </Alert>
                 </Td>
               </Tr>
@@ -79,4 +78,4 @@ const PolicyTable = ({ title, captions, data, policyGUID, isLoading, setIsLoadin
   );
 };
 
-export default PolicyTable;
+export default ClientTable;

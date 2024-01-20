@@ -15,6 +15,8 @@ import { IoPersonSharp } from "react-icons/io5";
 import { MdOutlinePolicy } from "react-icons/md";
 import { MdSpaceDashboard } from "react-icons/md";
 import { InfoOutlineIcon, SearchIcon, ViewIcon } from "@chakra-ui/icons";
+import { GoPerson } from "react-icons/go";
+import ClientDetails from "./views/Main/ClientDetails";
 
 var dashRoutes = [
   {
@@ -32,8 +34,8 @@ var dashRoutes = [
       {
         name: "Details",
         path: "/client/details",
-        icon: <InfoOutlineIcon color="inherit" />,
-        component: ClientSearch,
+        icon: <GoPerson color="inherit" />,
+        component: ClientDetails,
         layout: "/admin",
       },
     ],

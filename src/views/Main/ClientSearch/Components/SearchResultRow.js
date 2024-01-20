@@ -1,7 +1,7 @@
 import {
   Badge, Box,
   Button, Collapse, Divider,
-  Flex, Grid, HStack, IconButton, Link, Progress,
+  Flex, Grid, HStack, IconButton, Link, Progress, Skeleton,
   Td,
   Text,
   Tr,
@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import React, { useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom';
 import {
   ArrowForwardIcon,
   ChevronDownIcon,
@@ -75,6 +76,13 @@ function SearchResultRow(props) {
     return `${houseNumber} ${streetName}, ${city}, ${province}, ${country}, ${postalCode}`
     }
 
+  let history = useHistory();
+  const handleGoToClient = () => {
+    clientDetails.push({ formattedAddress: addressString })
+    clientDetails.push({ customer: customer })
+    console.log(clientDetails)
+    history.push('/admin/client/details', { clientState: clientDetails });
+  };
 
   return (
     <React.Fragment>
@@ -143,27 +151,32 @@ function SearchResultRow(props) {
             <Grid templateColumns="1fr 1fr 1fr" gap={5}>
               <Box>
                 <Text fontWeight="bold" mb={1}>Email Address</Text>
-                {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "EmailAddress")?.["TextValue"] || "could not find"}</Text>}
+                {isLoading ? <Skeleton height='10px' width='200px' /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "EmailAddress")?.["TextValue"] || "could not find"}</Text>}
               </Box>
               <Box>
                 <Text fontWeight="bold" mb={1}>Identification Type</Text>
-                {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "IdentificationType")?.["TextValue"] || "could not find"}</Text>}
+                {isLoading ? <Skeleton height='10px' width='200px' /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "IdentificationType")?.["TextValue"] || "could not find"}</Text>}
               </Box>
               <Box>
                 <Text fontWeight="bold" mb={1}>Identification Number</Text>
-                {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "IdentificationNumber")?.["TextValue"] || "could not find"}</Text>}
+                {isLoading ? <Skeleton height='10px' width='200px' /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "IdentificationNumber")?.["TextValue"] || "could not find"}</Text>}
               </Box>
               <Box>
                 <Text fontWeight="bold" mb={1}>Primary Address</Text>
-                {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{addressString}</Text>}
+                {isLoading ? <Skeleton height='10px' width='200px' /> : <Text>{addressString}</Text>}
               </Box>
               <Box>
                 <Text fontWeight="bold" mb={1}>Primary Phone Number</Text>
-                {isLoading ? <Progress size="sm" w="200px" isIndeterminate /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "PrimaryPhoneNumber")?.["TextValue"] || "could not find"}</Text>}
+                {isLoading ? <Skeleton height='10px' width='200px' /> : <Text>{clientDetails.find(obj => obj["FieldName"] === "PrimaryPhoneNumber")?.["TextValue"] || "could not find"}</Text>}
               </Box>
               <Box>
                 <br/>
-                <Button rightIcon={<ExternalLinkIcon />} colorScheme="blue" variant="link">
+                <Button
+                  rightIcon={<ExternalLinkIcon />}
+                  colorScheme="blue"
+                  variant="link"
+                  onClick={handleGoToClient}
+                >
                   Go To Client
                 </Button>
               </Box>

@@ -60,11 +60,6 @@ function Policy({ policyGUID, setPolicyGUID, ...props }) {
         setIsLoading={setIsLoading}
         onActionComplete={fetchData}
       />
-      {/*<SampleProjects*/}
-      {/*  title={"Summary"}*/}
-      {/*  captions={["Companies", "Budget", "Status", "Completion", ""]}*/}
-      {/*  data={dashboardTableData}*/}
-      {/*/>*/}
     </Flex>
   );
 }

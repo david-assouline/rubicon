@@ -138,7 +138,6 @@ const ClientSearchForm = ({setSearchType, setSearchParams}) => {
             Search
           </Button>
         </VStack>
-
       </CardBody>
     </Card>
   );
