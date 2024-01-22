@@ -47,7 +47,7 @@ var dashRoutes = [
     views: [
       {
         name: "Policy",
-        path: "/policy/search",
+        path: "/policy",
         icon: <MdOutlinePolicy color="inherit" />,
         component: Policy,
         layout: "/admin",

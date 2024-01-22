@@ -57,7 +57,7 @@ function ClientSearch() {
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
       <Grid
-        templateColumns="2fr 3fr 1fr"
+        templateColumns="3fr 3fr 1fr"
         templateRows="1fr"
         my="26px"
         gap="24px"

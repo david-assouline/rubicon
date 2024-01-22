@@ -52,7 +52,7 @@ export default function HeaderLinks({ policyGUID, setPolicyGUID, ...props}) {
       setPolicyGUID(localPolicyGUID);
       setLocalPolicyGUID('');
       event.target.blur();
-      history.push('/admin/administration');
+      history.push('/admin/policy');
     }
   };
 
