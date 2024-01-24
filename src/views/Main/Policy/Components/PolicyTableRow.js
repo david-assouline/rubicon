@@ -61,7 +61,7 @@ function PolicyTableRow(props) {
       </Td>
       <Td>
         <Badge
-          bg={status === "Active" ? "green.400" : bgStatus}
+          bg={status === "Active" ? "blue.500" : bgStatus}
           color={status === "Active" ? "white" : colorStatus}
           fontSize="16px"
           p="3px 10px"
@@ -85,7 +85,7 @@ function PolicyTableRow(props) {
               });
             }}
           >
-            <ArrowForwardIcon w={8} h={8} color="green.400"/>
+            <ArrowForwardIcon w={8} h={8} color="blue.500"/>
           </Button>
         )}
         {status === "Active" && (

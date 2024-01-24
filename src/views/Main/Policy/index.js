@@ -1,9 +1,10 @@
 // Chakra imports
-import { Flex } from "@chakra-ui/react";
+import { Divider, Flex } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import PolicyTable from "./Components/PolicyTable";
 import PolicyFilter from "./Components/PolicyFilter";
 import PolicyButtons from "./Components/PolicyButtons";
+import { PolicyWidgets } from "./Components/PolicyWidgets/PolicyWidgets";
 
 function Policy({ policyGUID, setPolicyGUID, ...props }) {
   const [policyData, setPolicyData] = useState([]);
@@ -31,6 +32,15 @@ function Policy({ policyGUID, setPolicyGUID, ...props }) {
 
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
+      <PolicyWidgets
+        title={"Filters"}
+        captions={["Transaction", "Date", "Detail", "Status", "Action"]}
+        setPolicyData={setPolicyData}
+        policyGUID={policyGUID}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        onActionComplete={fetchData}
+      />
       <PolicyFilter
         title={"Filters"}
         captions={["Transaction", "Date", "Detail", "Status", "Action"]}

@@ -34,11 +34,6 @@ const PolicyFilter = ({ title, setPolicyData, isLoading, policyGUID, setIsLoadin
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <Card overflowX={{ sm: "scroll", xl: "hidden" }}>
-      <CardHeader p='6px 0px 22px 0px'>
-        <Text fontSize='xl' color={textColor} fontWeight='bold'>
-          {title}
-        </Text>
-      </CardHeader>
       <CardBody>
         <Stack spacing={8} direction="row" align="center">
           <InputGroup size="md">
