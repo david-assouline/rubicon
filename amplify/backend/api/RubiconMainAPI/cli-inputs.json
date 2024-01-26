@@ -8,16 +8,16 @@
         "setting": "open"
       }
     },
-    "/api/functions/getpolicy": {
-      "name": "/api/functions/getpolicy",
-      "lambdaFunction": "RubiconGetPolicy",
+    "/api/functions/getclient": {
+      "name": "/api/functions/getclient",
+      "lambdaFunction": "CquencyGetClient",
       "permissions": {
         "setting": "open"
       }
     },
-    "/api/functions/getclient": {
-      "name": "/api/functions/getclient",
-      "lambdaFunction": "CquencyGetClient",
+    "/api/functions/getpolicy": {
+      "name": "/api/functions/getpolicy",
+      "lambdaFunction": "CquencyGetPolicy",
       "permissions": {
         "setting": "open"
       }

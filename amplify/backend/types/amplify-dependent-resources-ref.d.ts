@@ -14,6 +14,13 @@ export type AmplifyDependentResourcesAttributes = {
       "Name": "string",
       "Region": "string"
     },
+    "CquencyGetPolicy": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "RubiconCreateApplication": {
       "Arn": "string",
       "LambdaExecutionRole": "string",

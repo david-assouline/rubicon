@@ -25,7 +25,6 @@ function ClientRolesTableRow(props) {
     try {
       const response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/transactions/createapplication?action=${action}&trxGUID=${trxGUID}`);
       const data = await response.json();
-      console.log(data);
 
     } catch (error) {
       console.error('Error calling Lambda function:', error);

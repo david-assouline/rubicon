@@ -71,7 +71,6 @@ export default function Dashboard(props) {
 	const getRoutes = (routes) => {
 		return routes.map((category) => {
 			return category.views.map((prop, key) => {
-				console.log(prop)
 				if (prop.layout === '/admin') {
 					if (prop.path === '/policy') {
 						return (

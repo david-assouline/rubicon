@@ -19,7 +19,6 @@ import ClientRolesTableRow from "./ClientRolesTableRow";
 
 const ClientRolesTable = ({ title, captions, data, clientGUID, isLoading, setIsLoading, onActionComplete }) => {
   const textColor = useColorModeValue("gray.700", "white");
-  console.log(data)
   return (
     <Card overflowX={{ sm: "scroll", xl: "hidden" }}>
       <CardHeader p='0px 0px 10px 0px' >

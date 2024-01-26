@@ -16,7 +16,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "RubiconGetPolicy"
+          "resourceName": "CquencyGetClient"
         },
         {
           "attributes": [
@@ -24,7 +24,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "CquencyGetClient"
+          "resourceName": "CquencyGetPolicy"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -34,6 +34,11 @@
   "auth": {},
   "function": {
     "CquencyGetClient": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "CquencyGetPolicy": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -63,6 +68,22 @@
         {
           "category": "function",
           "resourceName": "CquencyGetClient"
+        }
+      ]
+    },
+    "AMPLIFY_function_CquencyGetPolicy_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "CquencyGetPolicy"
+        }
+      ]
+    },
+    "AMPLIFY_function_CquencyGetPolicy_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "CquencyGetPolicy"
         }
       ]
     },

@@ -24,6 +24,10 @@
         "CquencyGetClient": {
           "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
           "s3Key": "amplify-builds/CquencyGetClient-56664a4c4f666a44325a-build.zip"
+        },
+        "CquencyGetPolicy": {
+          "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
+          "s3Key": "amplify-builds/CquencyGetPolicy-4b31564b3468596c5869-build.zip"
         }
       },
       "api": {

@@ -5,7 +5,7 @@ import ExpandableWidget from "./ExpandableWidget";
 import CardBody from "../../../../../components/Card/CardBody";
 import Card from "../../../../../components/Card/Card";
 
-export function PolicyWidgets() {
+export function PolicyWidgets({widgetsData, isLoading}) {
   const [activeWidget, setActiveWidget] = useState(null);
 
   const handleWidgetClick = (widgetName) => {
@@ -23,59 +23,69 @@ export function PolicyWidgets() {
       <SimpleGrid columns={{ base: 8 }} spacing={4} flexBasis={{ base: '100%', xl: '50%' }} p={2}>
         <ExpandableWidget
           title={"POLICY NUMBER"}
-          amount={"455123457"}
+          data={widgetsData["PolicyNumber"]}
           icon={<ChevronDownIcon w={widgetProps.widgetWidth} h={widgetProps.widgetHeight} color={widgetProps.widgetColor}/>}
-          onWidgetClick={() => handleWidgetClick("POLICY NUMBER")}
-          isActive={activeWidget === "POLICY NUMBER"}
+          isExpandable={false}
+          isLoading={isLoading}
         />
         <ExpandableWidget
           title={"POLICY STATUS"}
-          amount={"ACTIVE"}
+          data={widgetsData["Status"]}
           icon={<ChevronDownIcon w={widgetProps.widgetWidth} h={widgetProps.widgetHeight} color={widgetProps.widgetColor}/>}
-          onWidgetClick={() => handleWidgetClick("POLICY STATUS")}
-          isActive={activeWidget === "POLICY STATUS"}
+          isExpandable={false}
+          isLoading={isLoading}
         />
         <ExpandableWidget
           title={"PRODUCT"}
-          amount={"WL"}
+          data={widgetsData["Product"]}
           icon={<ChevronDownIcon w={widgetProps.widgetWidth} h={widgetProps.widgetHeight} color={widgetProps.widgetColor}/>}
-          onWidgetClick={() => handleWidgetClick("PRODUCT")}
-          isActive={activeWidget === "PRODUCT"}
+          isExpandable={false}
+          isLoading={isLoading}
         />
         <ExpandableWidget
           title={"COVERAGES"}
-          amount={"2"}
+          data={widgetsData["Coverages"]}
           icon={<ChevronDownIcon w={widgetProps.widgetWidth} h={widgetProps.widgetHeight} color={widgetProps.widgetColor}/>}
           onWidgetClick={() => handleWidgetClick("COVERAGES")}
           isActive={activeWidget === "COVERAGES"}
+          isExpandable={true}
+          isLoading={isLoading}
         />
         <ExpandableWidget
           title={"ROLES"}
-          amount={"3"}
+          data={widgetsData["RolesCount"]}
           icon={<ChevronDownIcon w={widgetProps.widgetWidth} h={widgetProps.widgetHeight} color={widgetProps.widgetColor}/>}
           onWidgetClick={() => handleWidgetClick("ROLES")}
           isActive={activeWidget === "ROLES"}
+          isExpandable={true}
+          isLoading={isLoading}
         />
         <ExpandableWidget
           title={"PREMIUM"}
-          amount={"750.69"}
+          data={widgetsData["TotalPremiumAmount"]}
           icon={<ChevronDownIcon w={widgetProps.widgetWidth} h={widgetProps.widgetHeight} color={widgetProps.widgetColor}/>}
           onWidgetClick={() => handleWidgetClick("PREMIUM")}
           isActive={activeWidget === "PREMIUM"}
+          isExpandable={true}
+          isLoading={isLoading}
         />
         <ExpandableWidget
           title={"CASH VALUE"}
-          amount={"$35,789.41"}
+          data={widgetsData["CashValue"]}
           icon={<ChevronDownIcon w={widgetProps.widgetWidth} h={widgetProps.widgetHeight} color={widgetProps.widgetColor}/>}
           onWidgetClick={() => handleWidgetClick("CASH VALUE")}
           isActive={activeWidget === "CASH VALUE"}
+          isExpandable={true}
+          isLoading={isLoading}
         />
         <ExpandableWidget
           title={"RELATIONSHIPS"}
-          amount={"4"}
+          data={widgetsData["PolicyNumber"]}
           icon={<ChevronDownIcon w={widgetProps.widgetWidth} h={widgetProps.widgetHeight} color={widgetProps.widgetColor}/>}
           onWidgetClick={() => handleWidgetClick("RELATIONSHIPS")}
           isActive={activeWidget === "RELATIONSHIPS"}
+          isExpandable={true}
+          isLoading={isLoading}
         />
       </SimpleGrid>
 

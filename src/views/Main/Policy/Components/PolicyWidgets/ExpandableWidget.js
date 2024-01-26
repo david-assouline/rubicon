@@ -1,7 +1,8 @@
 // Chakra imports
 import {
+  Box,
   Button,
-  Flex,
+  Flex, Skeleton,
   Stat,
   StatHelpText,
   StatLabel,
@@ -15,11 +16,12 @@ import IconBox from "components/Icons/IconBox";
 import React from "react";
 import CardHeader from "../../../../../components/Card/CardHeader";
 
-const ExpandableWidget = ({ title, amount, percentage, icon, onWidgetClick, isActive  }) => {
+const ExpandableWidget = ({ title, data, icon, onWidgetClick, isActive, isExpandable, isLoading  }) => {
   const iconBlue = useColorModeValue("blue.500", "blue.500");
   const textColor = useColorModeValue("gray.700", "white");
   const borderColor = isActive ? "blue.500" : "transparent";
   const borderWidth = isActive ? "2px" : "0px";
+  const contentHeight = "20px";
 
   return (
     <Card minH='65px' p='6px 10px 0px 15px' border={borderWidth} borderColor={borderColor}>
@@ -30,22 +32,26 @@ const ExpandableWidget = ({ title, amount, percentage, icon, onWidgetClick, isAc
       </CardHeader>
       <CardBody>
         <Flex flexDirection='row' align='center' justify='center' w='100%'>
-          <Stat me='auto'>
-            <Flex>
-              <StatNumber fontSize='md'>
-                {amount}
-              </StatNumber>
-            </Flex>
+          <Stat>
+            {isLoading ? (
+              <Skeleton height='20px' width='100px' />
+            ) : (
+                <StatNumber fontSize='md'>{data}</StatNumber>
+            )}
           </Stat>
-          <Button
-            size="5px"
-            mb="8px"
-            colorScheme="ghost"
-            _hover={{ bg: "#ebedf0" }}
-            onClick={onWidgetClick}
-          >
-            {React.cloneElement(icon, { onClick: onWidgetClick })}
-          </Button>
+          {isExpandable ? (
+            <Button
+              height='100%'
+              mb="8px"
+              variant="ghost"
+              _hover={{ bg: "#ebedf0" }}
+              onClick={onWidgetClick}
+            >
+              {icon}
+            </Button>
+          ) : (
+            <Flex height={contentHeight} width='44px' mb="8px" />
+          )}
         </Flex>
       </CardBody>
     </Card>

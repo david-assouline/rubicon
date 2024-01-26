@@ -8,14 +8,20 @@ import { PolicyWidgets } from "./Components/PolicyWidgets/PolicyWidgets";
 
 function Policy({ policyGUID, setPolicyGUID, ...props }) {
   const [policyData, setPolicyData] = useState([]);
+  const [widgetsData, setWidgetsData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getpolicy?type="regular"&policyGUID=${policyGUID}`);
-      const data = await response.json();
+      let response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getpolicy?type=regular&policyGUID=${policyGUID}`);
+      let data = await response.json();
       setPolicyData(data);
+
+      response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getpolicy?type=widgets&policyGUID=${policyGUID}`);
+      data = await response.json();
+      console.log(data)
+      setWidgetsData(data);
 
     } catch (error) {
       console.error('Error fetching data: ', error);
@@ -33,10 +39,7 @@ function Policy({ policyGUID, setPolicyGUID, ...props }) {
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
       <PolicyWidgets
-        title={"Filters"}
-        captions={["Transaction", "Date", "Detail", "Status", "Action"]}
-        setPolicyData={setPolicyData}
-        policyGUID={policyGUID}
+        widgetsData={widgetsData}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
         onActionComplete={fetchData}
