@@ -47,11 +47,6 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
-    },
-    "RubiconGetPolicy": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
     }
   },
   "parameters": {
@@ -100,22 +95,6 @@
         {
           "category": "function",
           "resourceName": "RubiconCreateApplication"
-        }
-      ]
-    },
-    "AMPLIFY_function_RubiconGetPolicy_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "RubiconGetPolicy"
-        }
-      ]
-    },
-    "AMPLIFY_function_RubiconGetPolicy_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "RubiconGetPolicy"
         }
       ]
     }
