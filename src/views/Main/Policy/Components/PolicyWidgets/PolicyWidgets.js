@@ -1,11 +1,12 @@
-import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
+import {
+  SimpleGrid,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import ExpandableWidget from "./ExpandableWidget";
-import CardBody from "../../../../../components/Card/CardBody";
-import Card from "../../../../../components/Card/Card";
+import PolicyNumberExpandedWidget from "./ExpandedWidgets/PolicyNumberExpandedWidget";
 
-export function PolicyWidgets({widgetsData, isLoading}) {
+export function PolicyWidgets({widgetsData, isLoading, policyGUID}) {
   const [activeWidget, setActiveWidget] = useState(null);
 
   const handleWidgetClick = (widgetName) => {
@@ -25,7 +26,9 @@ export function PolicyWidgets({widgetsData, isLoading}) {
           title={"POLICY NUMBER"}
           data={widgetsData["PolicyNumber"]}
           icon={<ChevronDownIcon w={widgetProps.widgetWidth} h={widgetProps.widgetHeight} color={widgetProps.widgetColor}/>}
-          isExpandable={false}
+          onWidgetClick={() => handleWidgetClick("POLICY NUMBER")}
+          isActive={activeWidget === "POLICY NUMBER"}
+          isExpandable={true}
           isLoading={isLoading}
         />
         <ExpandableWidget
@@ -89,12 +92,10 @@ export function PolicyWidgets({widgetsData, isLoading}) {
         />
       </SimpleGrid>
 
-      {activeWidget && (
-        <Card mb='20px' mt="5px" overflowX={{ sm: "scroll", xl: "hidden" }}>
-          <CardBody>
-            <p>Content for {activeWidget}</p>
-          </CardBody>
-        </Card>
+      {activeWidget === "POLICY NUMBER" && (
+        <PolicyNumberExpandedWidget
+          policyGUID={policyGUID}
+        />
       )}
     </>
   );

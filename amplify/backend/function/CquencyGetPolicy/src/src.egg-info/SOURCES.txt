@@ -1,5 +1,6 @@
 setup.py
-resources/secrets.py
+resources/__init__.py
+resources/database.py
 src.egg-info/PKG-INFO
 src.egg-info/SOURCES.txt
 src.egg-info/dependency_links.txt

@@ -36,18 +36,18 @@ const PolicyFilter = ({ title, setPolicyData, isLoading, policyGUID, setIsLoadin
     <Card overflowX={{ sm: "scroll", xl: "hidden" }}>
       <CardBody>
         <Stack spacing={8} direction="row" align="center">
-          <InputGroup size="md">
+          <InputGroup size="sm">
             <InputLeftAddon children="From Date" />
             <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
           </InputGroup>
-          <InputGroup size="md">
+          <InputGroup size="sm">
             <InputLeftAddon children="To Date" />
             <Input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
           </InputGroup>
           <Button
             w="48"
             colorScheme="blue"
-            size="md"
+            size="sm"
             onClick={handleRefresh}
           >
             Refresh

@@ -18,7 +18,7 @@ function Policy({ policyGUID, setPolicyGUID, ...props }) {
       let data = await response.json();
       setPolicyData(data);
 
-      response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getpolicy?type=widgets&policyGUID=${policyGUID}`);
+      response = await fetch(`https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/functions/getpolicy?type=policyWidgets&policyGUID=${policyGUID}`);
       data = await response.json();
       console.log(data)
       setWidgetsData(data);
@@ -39,6 +39,7 @@ function Policy({ policyGUID, setPolicyGUID, ...props }) {
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
       <PolicyWidgets
+        policyGUID={policyGUID}
         widgetsData={widgetsData}
         isLoading={isLoading}
         setIsLoading={setIsLoading}

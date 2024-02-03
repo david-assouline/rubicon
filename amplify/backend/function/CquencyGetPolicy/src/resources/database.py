@@ -1,11 +1,11 @@
 import json
 
 import boto3
+import pymysql
 from botocore.exceptions import ClientError
 
 
 def get_secret():
-
     secret_name = "rubicon/db/mysql"
     region_name = "us-east-1"
 
@@ -25,3 +25,13 @@ def get_secret():
 
     secret = get_secret_value_response['SecretString']
     return json.loads(secret)
+
+
+def get_db_connection():
+    credentials = get_secret()
+    return pymysql.connect(
+        host=credentials['host'],
+        user=credentials['username'],
+        password=credentials['password'],
+        db='rubicon'
+    )

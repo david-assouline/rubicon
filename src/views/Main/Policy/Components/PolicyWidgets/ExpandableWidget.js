@@ -31,26 +31,28 @@ const ExpandableWidget = ({ title, data, icon, onWidgetClick, isActive, isExpand
         </Text>
       </CardHeader>
       <CardBody>
-        <Flex flexDirection='row' align='center' justify='center' w='100%'>
-          <Stat>
-            {isLoading ? (
-              <Skeleton height='20px' width='100px' />
-            ) : (
-                <StatNumber fontSize='md'>{data}</StatNumber>
-            )}
+        <Flex flexDirection='row' align='center' justifyContent='space-between' w='100%'>
+          <Stat me='auto'>
+            <Flex>
+              {isLoading ? (
+                <Skeleton height='20px' width='100px' />
+              ) : (
+                  <StatNumber fontSize='md'>{data}</StatNumber>
+              )}
+            </Flex>
           </Stat>
           {isExpandable ? (
             <Button
-              height='100%'
+              size="5px"
               mb="8px"
               variant="ghost"
               _hover={{ bg: "#ebedf0" }}
               onClick={onWidgetClick}
             >
-              {icon}
+              {React.cloneElement(icon, { onClick: onWidgetClick })}
             </Button>
           ) : (
-            <Flex height={contentHeight} width='44px' mb="8px" />
+            <Flex height={contentHeight} width='44px' mb="14px" />
           )}
         </Flex>
       </CardBody>
