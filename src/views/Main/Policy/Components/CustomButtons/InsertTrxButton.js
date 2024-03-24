@@ -64,7 +64,7 @@ export function InsertTrxButton(props) {
       trxJsonData: trxJsonData,
     };
 
-    fetch('https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/transactions/createapplication?action=insert', {
+    fetch('https://h40hwln9a9.execute-api.us-east-1.amazonaws.com/dev/api/trx?action=insert', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

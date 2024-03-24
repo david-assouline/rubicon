@@ -2,7 +2,7 @@ import json
 
 import pymysql
 
-from resources.secrets import get_secret
+from amplify.backend.function.CquencyCoreLambda.src.resources.secrets import get_secret
 
 
 def get_db_connection():

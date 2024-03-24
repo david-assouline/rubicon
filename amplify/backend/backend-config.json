@@ -63,6 +63,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_CquencyCoreLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "CquencyCoreLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_CquencyCoreLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "CquencyCoreLambda"
+        }
+      ]
+    },
     "AMPLIFY_function_CquencyGetClient_deploymentBucketName": {
       "usedBy": [
         {
