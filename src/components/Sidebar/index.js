@@ -48,7 +48,7 @@ function Sidebar(props) {
           borderRadius={sidebarRadius}
         >
           <SidebarContent routes={routes}
-        logoText={"CQUENCY INSURETECH"}
+        logoText={"CQUENCY"}
         display="none"
         sidebarVariant={sidebarVariant}
         />

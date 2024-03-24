@@ -16,19 +16,40 @@ import {
   InputLeftAddon
 } from "@chakra-ui/react";
 
+import React from "react";
 import { AddIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import { TransactionNames } from "../../../../../toolkit/TransactionNames";
 import { v4 as uuidv4 } from 'uuid';
+import {
+  AnniversaryFields,
+  IssuePolicyFields,
+  PremiumNoticeFields
+} from "../Transactions/FieldsMapping";
 export function InsertTrxButton(props) {
   const { policyGUID, setIsLoading, onActionComplete } = props;
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [trxGUID, setTrxGUID] = useState('');
-  const [trxName, setTrxName] = useState('Test Transaction 1');
+  const [trxName, setTrxName] = useState('');
   const [trxDate, setTrxDate] = useState(new Date().toISOString().split('T')[0]);
   const [trxStatus, setTrxStatus] = useState('Pending');
   const [trxJsonData, setTrxJsonData] = useState('');
+
+  // TRANSACTION FIELDS
+  const [formData, setFormData] = useState({});
+
+  const transactionFieldComponents = {
+    "Issue Policy": IssuePolicyFields,
+    "Premium Notice": PremiumNoticeFields,
+    "Anniversary": AnniversaryFields
+  };
+
+  const updateData = (field, value) => {
+    setFormData(prev => ({...prev, [field]: value}));
+  };
+
+  // TRANSACTION FIELDS
 
   const handleSubmit = () => {
     onClose();
@@ -79,7 +100,7 @@ export function InsertTrxButton(props) {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Transaction Fields</ModalHeader>
+          <ModalHeader>Insert Transaction</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Stack spacing="24px">
@@ -97,42 +118,34 @@ export function InsertTrxButton(props) {
 
               <Box>
                 <InputGroup>
-                  <InputLeftAddon children="Name" fontWeight="bold"/>
+                  <InputLeftAddon children="GUID" fontWeight="bold"/>
+                  <Input
+                    id="trxGUID"
+                    value={'Auto-Generated'}
+                    isDisabled
+                  />
+                </InputGroup>
+              </Box>
+
+              <Box>
+                <InputGroup>
+                  <InputLeftAddon children="Transaction" fontWeight="bold"/>
                     <Select
                       value={trxName}
                       onChange={(e) => setTrxName(e.target.value)}
                     >
+                      <option value="" disabled>Select transaction...</option>
+
                       {TransactionNames.map((option, index) => (
                         <option key={index} value={option}>{option}</option>
                       ))}
                     </Select>
                 </InputGroup>
               </Box>
-
-              <Box>
-                <InputGroup>
-                  <InputLeftAddon children="Date" fontWeight="bold"/>
-                    <Input
-                      id="trxDate"
-                      placeholder=""
-                      type="date"
-                      value={trxDate}
-                      onChange={(e) => setTrxDate(e.target.value)}
-                    />
-                </InputGroup>
-              </Box>
-
-              <Box>
-                <InputGroup>
-                  <InputLeftAddon children="GUID" fontWeight="bold"/>
-                  <Input
-                    id="trxGUID"
-                    value={"Auto-Generated"}
-                    isDisabled
-                  />
-                </InputGroup>
-              </Box>
-
+              {transactionFieldComponents[trxName] ? React.createElement(transactionFieldComponents[trxName], {
+                data: formData,
+                updateData: updateData
+              }) : null}
             </Stack>
           </ModalBody>
 
@@ -154,6 +167,85 @@ export function InsertTrxButton(props) {
           </ModalFooter>
         </ModalContent>
       </Modal>
+
+      {/*<Modal isOpen={isOpen} onClose={onClose}>*/}
+      {/*  <ModalOverlay />*/}
+      {/*  <ModalContent>*/}
+      {/*    <ModalHeader>Transaction Fields</ModalHeader>*/}
+      {/*    <ModalCloseButton />*/}
+      {/*    <ModalBody>*/}
+      {/*      <Stack spacing="24px">*/}
+
+      {/*        <Box>*/}
+      {/*          <InputGroup>*/}
+      {/*            <InputLeftAddon children="Policy" fontWeight="bold"/>*/}
+      {/*            <Input*/}
+      {/*              id="policyGUID"*/}
+      {/*              value={policyGUID}*/}
+      {/*              isDisabled*/}
+      {/*            />*/}
+      {/*          </InputGroup>*/}
+      {/*        </Box>*/}
+
+      {/*        <Box>*/}
+      {/*          <InputGroup>*/}
+      {/*            <InputLeftAddon children="Name" fontWeight="bold"/>*/}
+      {/*              <Select*/}
+      {/*                value={trxName}*/}
+      {/*                onChange={(e) => setTrxName(e.target.value)}*/}
+      {/*              >*/}
+      {/*                {TransactionNames.map((option, index) => (*/}
+      {/*                  <option key={index} value={option}>{option}</option>*/}
+      {/*                ))}*/}
+      {/*              </Select>*/}
+      {/*          </InputGroup>*/}
+      {/*        </Box>*/}
+
+      {/*        <Box>*/}
+      {/*          <InputGroup>*/}
+      {/*            <InputLeftAddon children="Date" fontWeight="bold"/>*/}
+      {/*              <Input*/}
+      {/*                id="trxDate"*/}
+      {/*                placeholder=""*/}
+      {/*                type="date"*/}
+      {/*                value={trxDate}*/}
+      {/*                onChange={(e) => setTrxDate(e.target.value)}*/}
+      {/*              />*/}
+      {/*          </InputGroup>*/}
+      {/*        </Box>*/}
+
+      {/*        <Box>*/}
+      {/*          <InputGroup>*/}
+      {/*            <InputLeftAddon children="GUID" fontWeight="bold"/>*/}
+      {/*            <Input*/}
+      {/*              id="trxGUID"*/}
+      {/*              value={"Auto-Generated"}*/}
+      {/*              isDisabled*/}
+      {/*            />*/}
+      {/*          </InputGroup>*/}
+      {/*        </Box>*/}
+
+      {/*      </Stack>*/}
+      {/*    </ModalBody>*/}
+
+      {/*    <ModalFooter>*/}
+      {/*      <Button*/}
+      {/*        colorScheme="blue"*/}
+      {/*        variant="outline"*/}
+      {/*        mr={3}*/}
+      {/*        onClick={onClose}*/}
+      {/*      >*/}
+      {/*        Close*/}
+      {/*      </Button>*/}
+      {/*      <Button*/}
+      {/*        onClick={handleSubmit}*/}
+      {/*        colorScheme="blue"*/}
+      {/*      >*/}
+      {/*        Insert*/}
+      {/*      </Button>*/}
+      {/*    </ModalFooter>*/}
+      {/*  </ModalContent>*/}
+      {/*</Modal>*/}
     </>
   )
 }

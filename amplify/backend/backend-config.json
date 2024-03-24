@@ -25,6 +25,14 @@
           ],
           "category": "function",
           "resourceName": "CquencyGetPolicy"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "CquencyCoreLambda"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -33,6 +41,11 @@
   },
   "auth": {},
   "function": {
+    "CquencyCoreLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "CquencyGetClient": {
       "build": true,
       "providerPlugin": "awscloudformation",

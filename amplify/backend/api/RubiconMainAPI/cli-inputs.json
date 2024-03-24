@@ -21,6 +21,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/trx": {
+      "name": "/trx",
+      "lambdaFunction": "CquencyCoreLambda",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

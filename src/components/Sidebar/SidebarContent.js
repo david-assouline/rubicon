@@ -5,10 +5,11 @@ import {
   Link,
   Stack,
   Text,
+  Image,
   useColorModeValue
 } from "@chakra-ui/react";
 import IconBox from "components/Icons/IconBox";
-import { CquencyLogo } from "components/Icons/Icons";
+import CquencyLogo from "assets/img/HomeInsuranceLogo.png";
 import { Separator } from "components/Separator/Separator";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
@@ -116,12 +117,24 @@ const SidebarContent = ({ logoText, routes }) => {
   return (
     <>
       <Box pt={"25px"} mb="12px">
-        <Link href={`${process.env.PUBLIC_URL}/#/`} target="_blank" display="flex" lineHeight="100%" mb="30px" fontWeight="bold" justifyContent="left" alignItems="center" fontSize="11px">
-          {<CquencyLogo w="32px" h="32px" me="10px" />}
-          <Text fontSize="sm" mt="3px">
-            {logoText}
-          </Text>
+        <Link
+          // href={`${process.env.PUBLIC_URL}/#/`}
+          href={`/#/`}
+          target="_blank"
+          display="flex"
+          lineHeight="100%"
+          mb="30px"
+          fontWeight="bold"
+          justifyContent="center"
+          alignItems="center"
+          fontSize="11px"
+        >
+          <Image src={CquencyLogo} me="5px" />
+          {/*<Text fontSize="sm" mt="3px">*/}
+          {/*  {logoText}*/}
+          {/*</Text>*/}
         </Link>
+
         <Separator></Separator>
       </Box>
       <Stack direction="column" mb="40px">

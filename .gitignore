@@ -2,6 +2,7 @@ node_modules
 yarn.lock
 package-lock.json
 build
+amplify
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend

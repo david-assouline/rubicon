@@ -23,8 +23,9 @@
         },
         "CquencyGetPolicy": {
           "deploymentBucketName": "amplify-rubiconinsuretech-dev-225919-deployment",
-          "s3Key": "amplify-builds/CquencyGetPolicy-3375596270576d377050-build.zip"
-        }
+          "s3Key": "amplify-builds/CquencyGetPolicy-5071734b524a2f454f38-build.zip"
+        },
+        "CquencyCoreLambda": {}
       },
       "api": {
         "RubiconMainAPI": {}

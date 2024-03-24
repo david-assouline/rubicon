@@ -45,7 +45,7 @@ const PolicyNumberExpandedWidget = ({policyGUID}) => {
       <CardBody>
         <Grid
           templateColumns="repeat(9, 1fr)"
-          gap="40px"
+          gap="30px"
         >
           {statsOrder.map(({ key }) => (
             <Stat key={key} display="flex" flexDirection="column" alignItems="center">
